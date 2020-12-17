@@ -1,0 +1,12 @@
+/*----------------------------------------------------------------------------------------------------------------------
+	Aşağıdaki örnekte escape sequence karakaterlerden dolayı istenilen elde edilemez 
+----------------------------------------------------------------------------------------------------------------------*/
+package csd;
+
+class App {
+	public static void main(String [] args) 
+	{		
+		System.out.println("C:\test\names.txt");
+	}
+}
+

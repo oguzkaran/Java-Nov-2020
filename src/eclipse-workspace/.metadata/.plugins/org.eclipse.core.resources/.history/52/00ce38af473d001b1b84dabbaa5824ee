@@ -1,0 +1,14 @@
+/*----------------------------------------------------------------------------------------------------------------------
+	Ters bölü u ile karkater yazımı değişken isimlerinde de kullanılabilir. Şüphesiz pratik değilşdir
+---------------------------------------------------------------------------------------------------------------------*/
+package csd;
+
+class App {
+	public static void main(String [] args) 
+	{		
+		int \u0061bc = 10;
+		
+		System.out.println(abc);
+	}
+}
+

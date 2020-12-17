@@ -1,0 +1,12 @@
+/*----------------------------------------------------------------------------------------------------------------------
+	Ters bölü karakterinden sonra özel karakterler dışında yazılan kaarkterler error oluşturur 
+---------------------------------------------------------------------------------------------------------------------*/
+package csd;
+
+class App {
+	public static void main(String [] args) 
+	{		
+		System.out.println("C:\\music\\names.txt"); //error
+	}
+}
+
