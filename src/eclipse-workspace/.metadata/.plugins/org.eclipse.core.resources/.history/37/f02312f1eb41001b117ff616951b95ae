@@ -1,0 +1,17 @@
+/*----------------------------------------------------------------------------------------------------------------------
+	 Operatörler 3(üç) biçimde sınıflandırılabilir
+	 1. İşlevlerine göre sınıflandırma
+	 	- Aritmetik operetörler
+	 	- Karşılaştırma operatörleri
+	 	- Mantıksal operatörler
+	 	- 
+---------------------------------------------------------------------------------------------------------------------*/
+package csd;
+
+class App {
+	public static void main(String [] args) 
+	{		
+				
+	}
+}
+

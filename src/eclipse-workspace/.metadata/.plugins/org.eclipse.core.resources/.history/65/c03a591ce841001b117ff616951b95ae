@@ -1,0 +1,14 @@
+/*----------------------------------------------------------------------------------------------------------------------
+	 Alttire karakteri kullanılabildiği yerde istenildiği kadar yazılabilir
+---------------------------------------------------------------------------------------------------------------------*/
+package csd;
+
+class App {
+	public static void main(String [] args) 
+	{		
+		int a = 0x01_AB__AA_FF;
+		
+		System.out.printf("a=%d%n", a);		
+	}
+}
+

@@ -1,0 +1,17 @@
+/*----------------------------------------------------------------------------------------------------------------------
+	Bir tamsayı sabitinin önüne bitişik olarak sıfır yazıldığında bu ekten sonra gelen
+	basamaklar hexadecimal basamaklar biçiminde ele alınır 
+---------------------------------------------------------------------------------------------------------------------*/
+package csd;
+
+class App {
+	public static void main(String [] args) 
+	{	
+		int a = 0xAB;
+		
+		System.out.printf("a=%d%n", a);
+		System.out.printf("a=%X%n", a);
+		System.out.printf("a=%o%n", a);
+	}
+}
+

@@ -1,0 +1,16 @@
+/*----------------------------------------------------------------------------------------------------------------------
+	Bir tamsayı sabiti herhangi bir önek almazsa decimal türdendir
+---------------------------------------------------------------------------------------------------------------------*/
+package csd;
+
+class App {
+	public static void main(String [] args) 
+	{	
+		int a = 67;
+		
+		System.out.printf("a=%d%n", a);
+		System.out.printf("a=%X%n", a);
+		System.out.printf("a=%o%n", a);
+	}
+}
+

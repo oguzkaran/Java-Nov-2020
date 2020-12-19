@@ -1,0 +1,14 @@
+/*----------------------------------------------------------------------------------------------------------------------
+	 Alttire karakteri sayı nokta içeriyorsa noktadan hemen önce ya da hemen sonra geçersizdir
+---------------------------------------------------------------------------------------------------------------------*/
+package csd;
+
+class App {
+	public static void main(String [] args) 
+	{		
+		double a = 3_.14; //error
+		double b = 3._14; //error
+				
+	}
+}
+

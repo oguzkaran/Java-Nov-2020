@@ -1,0 +1,16 @@
+/*----------------------------------------------------------------------------------------------------------------------
+	 Gerçek sayı sabitlerinin tamsayı kısmının değeri sıfırsa noktadan önce sıfır yazılmayabilir. Aynı durum 
+	 noktadan sonraki kısım sıfır ise de geçerlidir
+---------------------------------------------------------------------------------------------------------------------*/
+package csd;
+
+class App {
+	public static void main(String [] args) 
+	{		
+		//....
+		long ms = 3 * 60 * 60 * 24 * 365; //arakoda 94608000 sayısı olarak yazılır
+		
+		System.out.printf("ms=%d%n", ms);
+	}
+}
+
