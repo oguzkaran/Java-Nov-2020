@@ -1,19 +1,18 @@
 /*--------------------------------------------------------------------------------------------------------------------
-	Derleyici yukarıdan aşağıya ve soldan sağa olmak üzere anlamlı en uzun ifadeyi alacak şekilde ayırma işlemini yapar
+ 	Atama operatörü sağdan sola (right associative) önceliklidir
 ---------------------------------------------------------------------------------------------------------------------*/
 package csd;
 
 class App {
 	public static void main(String [] args) 
 	{	
-		int a = 10;
-		int b = 8;
-		int c;
+		int a, b, c;
 		
-		c = a + ++b;
+		a = b = c = 10;
 		
-		System.out.printf("a=%d%n", a); //a=11 	
-		System.out.printf("b=%d%n", b); //b=8 	
-		System.out.printf("c=%d%n", c); //c=18 	
+		System.out.printf("a=%d%n", a);
+		System.out.printf("b=%d%n", b);
+		System.out.printf("c=%d%n", c);
 	}
 }
+
