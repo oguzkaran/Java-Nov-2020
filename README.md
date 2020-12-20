@@ -1,4 +1,6 @@
 # Java-Nov-2020
+KAYNAK GÖSTERMEK KOŞULUYLA HER TÜRLÜ ALINTI YAPILABİLİR
+
 #java
 #programming
 #eclipse
