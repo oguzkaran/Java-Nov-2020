@@ -1,39 +1,27 @@
 /*--------------------------------------------------------------------------------------------------------------------
-	Sınıf Çalışması: Parametresi ile aldığı int türden sayıdan büyük ilk Fibonacci sayısını döndüren getNextFibonacciNumber
-	metodunu yazınız ve test ediniz
+	Etiketli break deyiminin kullanımı
 ---------------------------------------------------------------------------------------------------------------------*/
 package csd;
 
 class App {
 	public static void main(String [] args)
-	{
-		GetNextFibonacciTest.run();
-	}
-}
-
-class GetNextFibonacciTest {
-	public static void run()
 	{		
-		java.util.Scanner kb = new java.util.Scanner(System.in);
-		
-		for (;;) {
-			System.out.print("Bir sayı giriniz:");
-			int val = Integer.parseInt(kb.nextLine());
-			
-			if (val <= -999)
-				return;
-			
-			System.out.printf("%d sayısından sonraki ilk Fibonnacci sayısı:%d%n", val, NumberUtil.getNextFibonacciNumber(val));
+		EXIT_LOOP:
+		for (int i = 3; i < 10; ++i) {
+			EXIT_INNER_LOOP:
+			for (int j = 0; j < 100; ++j) {
+				for (int k = 5; k >= 0; --k) {
+					System.out.printf("{i : %d, j : %d, k : %d}%n", i, j, k);
+					if ((i + j + k) % 8 == 0)
+						break EXIT_INNER_LOOP;
+					
+					if ((i + j + k) % 11 == 0)
+						break EXIT_LOOP;
+				}				
+			}			
 		}
 		
+		System.out.println("Tekrar yapıyor musunuz?");
 	}
 }
-
-class NumberUtil {
-	public static int getNextFibonacciNumber(int val)
-	{
-		
-	}	
-}
-
 
