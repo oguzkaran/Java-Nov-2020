@@ -1,27 +1,91 @@
 /*--------------------------------------------------------------------------------------------------------------------
-	Etiketli break deyiminin kullanımı
+	Basit bir menü uygulamasının iskeleti
+	(İleride daha iyisi yazılacaktır)
 ---------------------------------------------------------------------------------------------------------------------*/
 package csd;
 
 class App {
 	public static void main(String [] args)
 	{		
-		EXIT_LOOP:
-		for (int i = 3; i < 10; ++i) {
-			EXIT_INNER_LOOP:
-			for (int j = 0; j < 100; ++j) {
-				for (int k = 5; k >= 0; --k) {
-					System.out.printf("{i : %d, j : %d, k : %d}%n", i, j, k);
-					if ((i + j + k) % 8 == 0)
-						break EXIT_INNER_LOOP;
-					
-					if ((i + j + k) % 11 == 0)
-						break EXIT_LOOP;
-				}				
-			}			
-		}
-		
-		System.out.println("Tekrar yapıyor musunuz?");
+		MenuApp.run();
 	}
 }
 
+class MenuApp {
+	public static void run()
+	{
+		Menu.run();
+	}
+}
+
+class Menu {
+	public static void displayMenu()
+	{
+		System.out.println("1.Ekle");
+		System.out.println("2.Güncelle");
+		System.out.println("3.Sil");
+		System.out.println("4.Listele");
+		System.out.println("5.Çıkış");
+		System.out.print("Seçenek:");
+	}
+	
+	public static void doWorkForInsert()
+	{
+		System.out.println("***************");
+		System.out.println("Ekle seçildi");
+		System.out.println("***************");
+	}
+	
+	public static void doWorkForUpdate()
+	{
+		System.out.println("***************");
+		System.out.println("Güncelle seçildi");
+		System.out.println("***************");
+	}
+	
+	public static void doWorkForDelete()
+	{
+		System.out.println("***************");
+		System.out.println("Sil seçildi");
+		System.out.println("***************");
+	}
+	
+	public static void doWorkForList()
+	{
+		System.out.println("***************");
+		System.out.println("Listele seçildi");
+		System.out.println("***************");
+	}
+	
+	public static void run()
+	{
+		java.util.Scanner kb = new java.util.Scanner(System.in);
+		
+		EXIT_MENU:
+		for (;;) {
+			displayMenu();
+			int option = Integer.parseInt(kb.nextLine());
+			
+			switch (option) {
+			case 1:
+				doWorkForInsert();
+				break;
+			case 2:
+				doWorkForUpdate();
+				break;
+			case 3:
+				doWorkForDelete();
+				break;
+			case 4:
+				doWorkForList();
+				break;
+			case 5:
+				break EXIT_MENU;
+			default:
+				System.out.println("Geçersiz seçenek");			
+			}			
+		}
+		
+		System.out.println("Teşekkürler");
+	}
+}
