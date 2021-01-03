@@ -1,187 +1,76 @@
 /*--------------------------------------------------------------------------------------------------------------------
-	Sınıf Çalışması: Parametresi ile aldığı int türden gün, ay ve yıl bilgisine ilişkin tarihin aşağıdaki açıklamalara
-	göre haftanın hangi gününe geldiğini döndüren getDayOfWeek metodunu yazınız
+	Sınıf Çalışması: Parametresi ile aldığı int türden bir sayının Collatz serisine ilişkin sayılarını ekrana
+	basan displayCollatz metodunu yazınız
 	Açıklamalar:
-		- Metot geçersiz bir tarih için -1 değerine döndecektir
-		- Haftanın günü 1.1.1900 ile verilen tarih arasınddaki gün sayısının 7 ile bölümünden elde edilen kalan ile 
-		bulunabilir. Bu değer 0 (sıfır) için "Pazar", 1 için "Pazartesi", ..., 6 için "Cumartesi" gününe ilişkindir.
-		- 1.1.1900 öncesindeki tarihler geçersiz kabul edilecektir		
-		- Ekran çıktısında haftanın günü bilgisini Türkçe olarak da gösteriniz. Örneğin:
-			03/01/2021 Pazar
-		- Parametresi ile aldığı gün, ay ve yıl bilgisine ilişkin tarihin hafta sonu olup olmadığını test eden
-		isWeekend metodunu yazınız. Metot geçerlilik kontrolü yapmayacaktır
-		- Parametresi ile aldığı gün, ay ve yıl bilgisine ilişkin tarihin hafta içi olup olmadığını test eden
-		isWeekday metodunu yazınız. Metot geçerlilik kontrolü yapmayacaktır
-		- İleride daha iyileri yazılacaktır
+		(Collatz conjecture)
+		- n bir pozitif tamsayı olmak üzere her yeni n değeri için aşağıdaki kurallar uygulanacaktır:
+		 	- n, 1 değerine eşit ise işlemler sonlandırılacaktır
+		 	- n çift ise yeni n değeri olarak n / 2, n tek ise yeni n değeri olarak 3 * n + 1 alınacaktır
+		 	
+		 	Örnek:		 	
+		 	72543 217630 108815 326446 163223 489670 244835 734506 367253 1101760 
+			550880 275440 137720 68860 34430 17215 51646 25823 77470 38735 116206 
+			58103 174310 87155 261466 130733 392200 196100 98050 49025 147076 73538 
+			36769 110308 55154 27577 82732 41366 20683 62050 31025 93076 46538 23269 
+			69808 34904 17452 8726 4363 13090 6545 19636 9818 4909 14728 7364 3682 
+			1841 5524 2762 1381 4144 2072 1036 518 259 778 389 1168 584 292 146 73 
+			220 110 55 166 83 250 125 376 188 94 47 142 71 214 107 322 161 484 242 
+			121 364 182 91 274 137 412 206 103 310 155 466 233 700 350 175 526 263 
+			790 395 1186 593 1780 890 445 1336 668 334 167 502 251 754 377 1132 566 
+			283 850 425 1276 638 319 958 479 1438 719 2158 1079 3238 1619 4858 2429 
+			7288 3644 1822 911 2734 1367 4102 2051 6154 3077 9232 4616 2308 1154 577 
+			1732 866 433 1300 650 325 976 488 244 122 61 184 92 46 23 70 35 106 53 
+			160 80 40 20 10 5 16 8 4 2 1
 ---------------------------------------------------------------------------------------------------------------------*/
 package csd;
 
 class App {
 	public static void main(String [] args)
 	{		
-		GetDayOfYearTest.run();
+		IsFactorianTest.run();
 	}
 }
 
-class GetDayOfYearTest {
+class IsFactorianTest {
 	public static void run()
 	{
-		java.util.Scanner kb = new java.util.Scanner(System.in);
-		
-		for (;;) {
-			System.out.print("Gün?");
-			int day = Integer.parseInt(kb.nextLine());
-			
-			if (day == 0)
-				break;
-			
-			System.out.print("Ay?");
-			int month = Integer.parseInt(kb.nextLine());
-			
-			System.out.print("Yıl?");
-			int year = Integer.parseInt(kb.nextLine());
-			
-			DateUtil.displayDateTR(day, month, year);
-		}
-		
-		System.out.println("Tekrar yapıyor musunuz?");		
+		for (int i = -10; i <= 100000; ++i)
+			if (NumberUtil.isFactorian(i))
+				System.out.println(i);
 	}
 }
 
-class DateUtil {	
-	public static void displayDateTR(int day, int month, int year)
+class NumberUtil {
+	public static boolean isFactorian(int val)
 	{
-		int dayOfWeek = getDayOfWeek(day, month, year);		
+		if (val <= 0)
+			return false;		
 		
-		switch (dayOfWeek) {
-			case 0:
-				System.out.printf("%02d/%02d/%04d Pazar%n", day, month, year);
-				break;
-			case 1:
-				System.out.printf("%02d/%02d/%04d Pazartesi%n", day, month, year);
-				break;
-			case 2:
-				System.out.printf("%02d/%02d/%04d Salı%n", day, month, year);
-				break;
-			case 3:
-				System.out.printf("%02d/%02d/%04d Çarşamba%n", day, month, year);
-				break;
-			case 4:
-				System.out.printf("%02d/%02d/%04d Perşembe%n", day, month, year);
-				break;
-			case 5:
-				System.out.printf("%02d/%02d/%04d Cuma%n", day, month, year);
-				break;
-			case 6:
-				System.out.printf("%02d/%02d/%04d Cumartesi%n", day, month, year);
-				break;
-			default:
-				System.out.println("Geçersiz tarih");
-		}
-		
-		if (isWeekend(day, month, year)) 
-			System.out.println("Bugün kurs var tekrar yaptınız mı?");
-		else
-			System.out.println("Hafta sonu kurs var. Tekrar yapmayı unutmayınız!!!");
+		return getDigitsFactorialSum(val) == val;
 	}
 	
-	public static boolean isWeekend(int day, int month, int year)
+	public static int getDigitsFactorialSum(int val)
 	{
-		int dayOfWeek = getDayOfWeek(day, month, year);
+		int sum = 0;
 		
-		return dayOfWeek == 0 || dayOfWeek == 6;
+		while (val != 0) {
+			sum += factorial(val % 10); 
+			val /= 10;
+		}		
+		
+		return sum;
 	}
 	
-	public static boolean isWeekday(int day, int month, int year)
-	{		
-		return !isWeekend(day, month, year);
-	}
-	
-	public static int getDayOfWeek(int day, int month, int year)
-	{		
-		int totalDays;
-		
-		if (year < 1900 || (totalDays = getDayOfYear(day, month, year)) == -1)
-			return -1;		
-		
-		for (int y = 1900; y < year; ++y) {
-			totalDays += 365;
-			if (isLeapYear(y))
-				++totalDays;
-		}
-		
-		return totalDays % 7;					
-	}
-	
-	public static int getDayOfYear(int day, int month, int year)
+	public static int factorial(int n)
 	{
-		if (!isValidDate(day, month, year))
-			return -1;		
-			
-		return day + getTotalDaysByMonth(month, year);
-	}
-	
-	
-	public static int getTotalDaysByMonth(int month, int year)
-	{
-		int totalDays = 0;
+		if (n < 0)
+			return -1;
 		
-		switch (month - 1) {
-		case 11:
-			totalDays += 30;
-		case 10:
-			totalDays += 31;
-		case 9:
-			totalDays += 30;
-		case 8:
-			totalDays += 31;
-		case 7:
-			totalDays += 31;
-		case 6:
-			totalDays += 30;
-		case 5:
-			totalDays += 31;
-		case 4:
-			totalDays += 30;
-		case 3:
-			totalDays += 31;
-		case 2:
-			totalDays += 28;
-			if (isLeapYear(year))
-				++totalDays;
-		case 1:
-			totalDays += 31;			
-		}
+		int result = 1;
 		
-		return totalDays;
-			
-	}
-	
-	public static boolean isValidDate(int day, int month, int year)
-	{
-		if (day < 1 || day > 31 || month < 1 || month > 12)
-			return false;
+		for (int i = 2; i <= n; ++i)
+			result *= i;
 		
-		int days = 31;
-		
-		switch (month) {
-		case 4:
-		case 6:
-		case 9:
-		case 11:
-			days = 30;
-			break;
-		case 2:
-			days = 28;
-			if (isLeapYear(year))
-				++days;
-		}
-		
-		return day <= days;
-	}
-	
-	public static boolean isLeapYear(int year)
-	{
-		return year % 4 == 0 && year % 100 != 0 || year % 400 == 0; 
+		return result;
 	}
 }
