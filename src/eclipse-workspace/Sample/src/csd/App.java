@@ -5,10 +5,14 @@
 		- Metot geçersiz bir tarih için -1 değerine döndecektir
 		- Haftanın günü 1.1.1900 ile verilen tarih arasınddaki gün sayısının 7 ile bölümünden elde edilen kalan ile 
 		bulunabilir. Bu değer 0 (sıfır) için "Pazar", 1 için "Pazartesi", ..., 6 için "Cumartesi" gününe ilişkindir.
-		- 1.1.1900 öncesindeki tarihler geçersiz kabul edilecektir
-		- İleride daha iyileri yazılacaktır
+		- 1.1.1900 öncesindeki tarihler geçersiz kabul edilecektir		
 		- Ekran çıktısında haftanın günü bilgisini Türkçe olarak da gösteriniz. Örneğin:
 			03/01/2021 Pazar
+		- Parametresi ile aldığı gün, ay ve yıl bilgisine ilişkin tarihin hafta sonu olup olmadığını test eden
+		isWeekend metodunu yazınız. Metot geçerlilik kontrolü yapmayacaktır
+		- Parametresi ile aldığı gün, ay ve yıl bilgisine ilişkin tarihin hafta içi olup olmadığını test eden
+		isWeekday metodunu yazınız. Metot geçerlilik kontrolü yapmayacaktır
+		- İleride daha iyileri yazılacaktır
 ---------------------------------------------------------------------------------------------------------------------*/
 package csd;
 
@@ -37,54 +41,120 @@ class GetDayOfYearTest {
 			System.out.print("Yıl?");
 			int year = Integer.parseInt(kb.nextLine());
 			
-			int dayOfYear = DateUtil.getDayOfYear(day, month, year);
-			
-			if (dayOfYear > 0)
-				System.out.printf("%02d/%02d/%04d tarihi yılın %d. günüdür%n", day, month, year, dayOfYear);
-			else
-				System.out.println("Geçersiz tarih");
+			DateUtil.displayDateTR(day, month, year);
 		}
 		
 		System.out.println("Tekrar yapıyor musunuz?");		
 	}
 }
 
-class DateUtil {
+class DateUtil {	
+	public static void displayDateTR(int day, int month, int year)
+	{
+		int dayOfWeek = getDayOfWeek(day, month, year);		
+		
+		switch (dayOfWeek) {
+			case 0:
+				System.out.printf("%02d/%02d/%04d Pazar%n", day, month, year);
+				break;
+			case 1:
+				System.out.printf("%02d/%02d/%04d Pazartesi%n", day, month, year);
+				break;
+			case 2:
+				System.out.printf("%02d/%02d/%04d Salı%n", day, month, year);
+				break;
+			case 3:
+				System.out.printf("%02d/%02d/%04d Çarşamba%n", day, month, year);
+				break;
+			case 4:
+				System.out.printf("%02d/%02d/%04d Perşembe%n", day, month, year);
+				break;
+			case 5:
+				System.out.printf("%02d/%02d/%04d Cuma%n", day, month, year);
+				break;
+			case 6:
+				System.out.printf("%02d/%02d/%04d Cumartesi%n", day, month, year);
+				break;
+			default:
+				System.out.println("Geçersiz tarih");
+		}
+		
+		if (isWeekend(day, month, year)) 
+			System.out.println("Bugün kurs var tekrar yaptınız mı?");
+		else
+			System.out.println("Hafta sonu kurs var. Tekrar yapmayı unutmayınız!!!");
+	}
+	
+	public static boolean isWeekend(int day, int month, int year)
+	{
+		int dayOfWeek = getDayOfWeek(day, month, year);
+		
+		return dayOfWeek == 0 || dayOfWeek == 6;
+	}
+	
+	public static boolean isWeekday(int day, int month, int year)
+	{		
+		return !isWeekend(day, month, year);
+	}
+	
+	public static int getDayOfWeek(int day, int month, int year)
+	{		
+		int totalDays;
+		
+		if (year < 1900 || (totalDays = getDayOfYear(day, month, year)) == -1)
+			return -1;		
+		
+		for (int y = 1900; y < year; ++y) {
+			totalDays += 365;
+			if (isLeapYear(y))
+				++totalDays;
+		}
+		
+		return totalDays % 7;					
+	}
+	
 	public static int getDayOfYear(int day, int month, int year)
 	{
 		if (!isValidDate(day, month, year))
-			return -1;
-		
-		int dayOfYear = day;
+			return -1;		
+			
+		return day + getTotalDaysByMonth(month, year);
+	}
+	
+	
+	public static int getTotalDaysByMonth(int month, int year)
+	{
+		int totalDays = 0;
 		
 		switch (month - 1) {
 		case 11:
-			dayOfYear += 30;
+			totalDays += 30;
 		case 10:
-			dayOfYear += 31;
+			totalDays += 31;
 		case 9:
-			dayOfYear += 30;
+			totalDays += 30;
 		case 8:
-			dayOfYear += 31;
+			totalDays += 31;
 		case 7:
-			dayOfYear += 31;
+			totalDays += 31;
 		case 6:
-			dayOfYear += 30;
+			totalDays += 30;
 		case 5:
-			dayOfYear += 31;
+			totalDays += 31;
 		case 4:
-			dayOfYear += 30;
+			totalDays += 30;
 		case 3:
-			dayOfYear += 31;
+			totalDays += 31;
 		case 2:
-			dayOfYear += 28;
+			totalDays += 28;
 			if (isLeapYear(year))
-				++dayOfYear;
+				++totalDays;
 		case 1:
-			dayOfYear += 31;			
+			totalDays += 31;			
 		}
 		
-		return dayOfYear;
+		return totalDays;
+			
 	}
 	
 	public static boolean isValidDate(int day, int month, int year)
