@@ -1,57 +1,22 @@
 /*--------------------------------------------------------------------------------------------------------------------
-	Sınıf Çalışması: n pozitif bir tamsayı üzere ve a, b, c, d birbirinden farklı tamsayılar olmak üzere eğer
-	n = a ^ 3 + b ^ 3 = c ^ 3 + d ^ 3 eşitliğini sağlayacak şekilde a, b, c ve d tamsayıları var ise n bir
-	Hardy-Ramanujan sayısıdır.  
-	
-	1729 = 9 ^ 3 + 10 ^ 3 = 1 ^ 3 + 12 ^3
-	Buna göre 100000'den küçün olan tüm Hardy-Ramanujan sayılarını ekrana bastıran metodu programı yazınız  
+	Bilindiği gibi Java'da byte ve short türden sabit yoktur. Ancak "sınırlar içerisinde kalan int türden 
+	bir sabit" byte/short türüne atanabilir
 ---------------------------------------------------------------------------------------------------------------------*/
 package csd;
 
 class App {
 	public static void main(String [] args)
 	{		
-		DisplayCollatzTest .run();
-	}
-}
-
-class DisplayCollatzTest {
-	public static void run()
-	{
-		java.util.Scanner kb = new java.util.Scanner(System.in);
+		short a;
+		byte b;
 		
-		for (;;) {
-			System.out.print("Bir sayı giriniz:");
-			int n = Integer.parseInt(kb.nextLine());
-			
-			if (n == 0)
-				break;
-			
-			NumberUtil.displayCollatz(n);
-		}
-	}
-}
-
-class NumberUtil {
-	
-	public static void displayCollatz(int n)
-	{
-		if (n <= 0) {
-			System.out.println("Geçersiz değer");
-			return;
-		}
+		a = 45;
+		b = 67;
 		
-		for (;;) {
-			System.out.println(n);
-			
-			if (n == 1)
-				break;
-			
-			if (n % 2 == 0)
-				n /= 2;
-			else
-				n = 3 * n + 1;				
-		}
+		a = 40000; //error
+		b = -156; //error
+		
+		a = 10L; //error
+		b = 20L; //error
 	}
 }
-
