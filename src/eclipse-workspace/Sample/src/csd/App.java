@@ -1,22 +1,17 @@
 /*--------------------------------------------------------------------------------------------------------------------
-	Bilindiği gibi Java'da byte ve short türden sabit yoktur. Ancak "sınırlar içerisinde kalan int türden 
-	bir sabit" byte/short türüne atanabilir
+	 implicit olarak yapılabilen dönüşümler explicit olarak da yapılabilir. Aşağıdaki örnekte bu yapılmıştır ancak
+	 anlamı yoktur 	 
 ---------------------------------------------------------------------------------------------------------------------*/
 package csd;
 
 class App {
 	public static void main(String [] args)
-	{		
-		short a;
-		byte b;
+	{
+		int a = 10;
+		long b;
 		
-		a = 45;
-		b = 67;
+		b = (long)a;
 		
-		a = 40000; //error
-		b = -156; //error
-		
-		a = 10L; //error
-		b = 20L; //error
+		System.out.printf("b = %d%n", b);		
 	}
 }
