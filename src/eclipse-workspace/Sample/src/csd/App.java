@@ -1,31 +1,67 @@
 /*--------------------------------------------------------------------------------------------------------------------
-	Gerçek sayı türünden tamsayı türüne yapılan explicit dönüşüm şu aşamalarla gerçekleşir:
-	- Sayının noktadan sonraki kısmı atılır
-		- Elde edilen değer hedef türün sınırları içerisinde kalıyorsa doğrudan hedef türe atılır
-		- Elde edilen değer hedef türün sınırları içerisinde değilse:
-			- Hedef tür byte, short, int ve char türlerinden biriyse elde edilen değer int türüne dönüştürülür
-				- Elde edilen değer int türü sınırları içerisinde int türüne dönüşüm kuralları uygulanır. Buradan
-				elde edilen değer tamsayılar arasındaki dönüşüm kurallarına göre hedef türe atanır 
-				- Elde edilen değer int türü sınırları içerisinde değilse değerin pozitif ya da negatif olmasına
-				göre int türünün en büyük ya da en küçük değeri alınır ve hedef türe dönüştürülür
-			- Hedef tür long türü ise elde edilen long türüne dönüştürülür
-				- Elde edilen değer long türü sınırları içerisindeyse doğrudan atanır
-				- Elde edilen değer long türü sınırları içerisinde değilse sayının değerin pozitif ya da negatif olmasına
-				göre long türünün en büyük ya da en küçük değeri alınır ve hedef türe atanır
+	Sınıf Çalışması: Parametresi ile aldığı bir sayının Armstrong sayısı olup olmadığını test eden isArmstrong
+	metodunu NumberUtil sınıfı içerisinde yazınız ve test ediniz. 
+	
+	Açıklamalar:
+	- Kuvvet alma işlemi için Math sınıfının pow metodunu kullanmayınız
+	
+	- Bir sayının her basamağının basamak sayıncı kuvvetleri alınıp toplandığında sonuç sayının kendisine eşitse, bu 
+	sayı bir Armstrong sayısıdır
+	Örneğin: 153 -> 1 * 1 * 1 + 5 * 5 * 5 + 3 * 3 * 3 = 153
+	
+	- Sayı negatif ise false döndürebilirsiniz
+	
+	- Test işlemini 1, 2, 3, 4, 5, 6 ve 7 basamaklı Armstrong sayılarını ekrana yazdırarak yapabilirsiniz
+	
+	Örnekte Math.pow metodunun += operatörü ile kullanımına ve countDigits metoduna dikkat ediniz
 ---------------------------------------------------------------------------------------------------------------------*/
 package csd;
 
 class App {
 	public static void main(String [] args)
 	{
-		double a;
-		int b;
-		
-		a = -5_000_000_000.907;
-		
-		b = (int)a;
-		
-		System.out.printf("%d%n", (int)-5_000_000_000L);		
-		System.out.printf("b = %d%n", b);
+		IsArmstrongTest.run();
 	}
+}
+
+
+class IsArmstrongTest {
+	public static void run()
+	{
+		for (int n = -100; n <= 9999999; ++n)
+			if (NumberUtil.isArmstrong(n))
+				System.out.println(n);
+	}
+}
+
+class NumberUtil {
+	public static boolean isArmstrong(int val)
+	{
+		if (val < 0)
+			return false;
+		
+		return getDigitstPowSum(val) == val;	
+	}
+	
+	public static int getDigitstPowSum(int val)
+	{
+		int n = countDigits(val);		
+		int sum = 0;
+		
+		while (val != 0) {
+			sum += Math.pow(val % 10, n);
+			val /= 10;
+		}
+		
+		return sum;				
+	}
+	
+	public static int countDigits(long val)
+	{
+		if (val == 0)
+			return 1;
+		
+		return (int)Math.log10(Math.abs(val)) + 1;
+	}	
+	
 }
