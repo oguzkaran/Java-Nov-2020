@@ -1,25 +1,47 @@
-/*--------------------------------------------------------------------------------------------------------------------
-	Yukarıdaki örnek parantez konarak daha okunabilir hale getirilebilir	
+/*--------------------------------------------------------------------------------------------------------------------	
+	
 ---------------------------------------------------------------------------------------------------------------------*/
 package csd;
 
 class App {
 	public static void main(String [] args)
 	{
-		java.util.Scanner kb = new java.util.Scanner(System.in);
-		System.out.print("Birinci sayıyı giriniz:");
-		int a = Integer.parseInt(kb.nextLine());
+		short a = 10;
+		float b = 30;
 		
-		System.out.print("İkinci sayıyı giriniz:");
-		int b = Integer.parseInt(kb.nextLine());	
-		
-		System.out.print("Üçüncü sayıyı giriniz:");
-		int c = Integer.parseInt(kb.nextLine());
-
-		int min;
-		
-		min = (a < b) ? (a < c ? a : c) : (b < c ? b : c); 
-		
-		System.out.printf("min(%d, %d, %d) = %d%n", a, b, c, min);		
+		Sample.foo(a, b);
 	}
 }
+
+class Sample {
+	public static void foo() // #1
+	{
+		System.out.println("Sample, foo");	
+	}
+	
+	public static void foo(int a) //#2
+	{
+		System.out.println("Sample, foo, int");
+	}		
+	
+	public static void foo(long a, int b) //#3
+	{
+		System.out.println("Sample, foo, double, int");
+	}
+	
+	public static void foo(int a, long b) //#4
+	{
+		System.out.println("Sample, foo, int, long");
+	}
+	
+	public static void foo(int a, float b) //#5
+	{
+		System.out.println("Sample, foo, int, float");
+	}
+	
+	public static void bar(int a) //#6
+	{
+		System.out.println("Sample, bar, int");
+	}
+}
+
