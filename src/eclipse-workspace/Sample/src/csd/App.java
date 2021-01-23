@@ -1,20 +1,46 @@
 /*--------------------------------------------------------------------------------------------------------------------	
-	Aşağıdaki örnekte s yerel değişkenine değer atanmadan kullanıldığı error oluşur
+	Referans parametreli metotlar aldıkları referansa ilişkkinin nesne üzerinde değişşiklik yapabilirler. Yani
+	referans parametreli metotlar ile nesnelere erişilebilir
 ---------------------------------------------------------------------------------------------------------------------*/
 package csd;
 
 class App {
 	public static void main(String [] args)
-	{		
-		Sample s;
+	{	
+		Date birthDate;
 		
-		s.x = 10; //error				
+		birthDate = new Date();
+		
+		birthDate.day = 10;
+		birthDate.month = 9;
+		birthDate.year = 1976;
+		
+		DateUtil.displayDate(birthDate);
+		
+		DateUtil.changeDate(birthDate, 11, 7, 1983);
+		
+		DateUtil.displayDate(birthDate);
 	}
 }
 
-class Sample {
-	public int x;
-	public boolean y;
-	//...
+
+class DateUtil {
+	public static void changeDate(Date date, int day, int month, int year)
+	{
+		//...
+		
+		date.day = day;
+		date.month = month;
+		date.year = year;
+	}
+	
+	public static void displayDate(Date date)
+	{
+		System.out.printf("%02d/%02d/%04d%n", date.day, date.month, date.year);
+	}
 }
 
+class Date {
+	public int day, month, year;
+	//...
+}
