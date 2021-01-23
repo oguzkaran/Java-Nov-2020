@@ -1,46 +1,30 @@
 /*--------------------------------------------------------------------------------------------------------------------	
-	Referans parametreli metotlar aldıkları referansa ilişkkinin nesne üzerinde değişşiklik yapabilirler. Yani
-	referans parametreli metotlar ile nesnelere erişilebilir
+	 Sınıfın non-static bir metodu içerisinde içerisinde aynı sınıfın static veri elemanlarına doğrudan erişilebilir 
 ---------------------------------------------------------------------------------------------------------------------*/
 package csd;
 
 class App {
 	public static void main(String [] args)
 	{	
-		Date birthDate;
+		Sample s, k;
 		
-		birthDate = new Date();
+		s = new Sample();
+		k = new Sample();
 		
-		birthDate.day = 10;
-		birthDate.month = 9;
-		birthDate.year = 1976;
+		s.foo(20);
+		System.out.printf("Sample.x = %d%n", Sample.x);
 		
-		DateUtil.displayDate(birthDate);
-		
-		DateUtil.changeDate(birthDate, 11, 7, 1983);
-		
-		DateUtil.displayDate(birthDate);
+		k.foo(10);		
+		System.out.printf("Sample.x = %d%n", Sample.x);		
 	}
 }
 
-
-class DateUtil {
-	public static void changeDate(Date date, int day, int month, int year)
+class Sample {
+	public static int x;
+	
+	public void foo(int a)
 	{
-		//...
-		
-		date.day = day;
-		date.month = month;
-		date.year = year;
+		x = a;
 	}
 	
-	public static void displayDate(Date date)
-	{
-		System.out.printf("%02d/%02d/%04d%n", date.day, date.month, date.year);
-	}
-}
-
-class Date {
-	public int day, month, year;
-	//...
 }
