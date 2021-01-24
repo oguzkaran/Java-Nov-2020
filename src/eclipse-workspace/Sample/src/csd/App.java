@@ -1,30 +1,37 @@
-/*--------------------------------------------------------------------------------------------------------------------	
-	 Sınıfın non-static bir metodu içerisinde içerisinde aynı sınıfın static veri elemanlarına doğrudan erişilebilir 
+/*--------------------------------------------------------------------------------------------------------------------		
+	 Point sınıfı ve test kodu
 ---------------------------------------------------------------------------------------------------------------------*/
 package csd;
 
 class App {
 	public static void main(String [] args)
-	{	
-		Sample s, k;
+	{
+		Point p = new Point();
 		
-		s = new Sample();
-		k = new Sample();
+		p.x = 45;
+		p.y = -67;
 		
-		s.foo(20);
-		System.out.printf("Sample.x = %d%n", Sample.x);
+		p.display();		
 		
-		k.foo(10);		
-		System.out.printf("Sample.x = %d%n", Sample.x);		
+		p.offset(-20, 24);
+		
+		p.display();
 	}
 }
 
-class Sample {
-	public static int x;
+class Point {
+	public int x;
+	public int y;
 	
-	public void foo(int a)
+	
+	public void offset(int dx, int dy)
 	{
-		x = a;
+		x += dx;
+		y += dy;
 	}
 	
+	public void display()
+	{
+		System.out.printf("{x : %d, y : %d}%n", x, y);
+	}
 }
