@@ -1,46 +1,36 @@
 /*--------------------------------------------------------------------------------------------------------------------		
-	Sınıf Çalışması: Parametresi ile aldığı bir yazının palindrom olup olmadığını test eden isPalindrome isimli
-	metodu yazınız ve test ediniz.
-	
-	Palindrom: Yalnızca alfabetik karakterler tersten okuduğunda aynı olan yazılara denir. Yani alfabetik dışı
-	karakterler yok sayılır
-	Örnek: 
-	Ey edip Adana'da pide ye ->eyedipadanadapideye
-	Ali Papila -> alipapila
-	Anastas mum satsana -> anastasmumsatsana	
+	Java 7 ile birlikte switch deyiminde Strinf de kullanılabilmektedir. Bu durumda case bölümlerinin String literal
+	olması zorunludur. String sınıfı switch deyimi ile kullanıldığında karşılaştırma equals metodu ile yapılır
 ---------------------------------------------------------------------------------------------------------------------*/
 package csd;
 
 class App {
 	public static void main(String [] args)
-	{		
-		PalindromTest.run();
-	}
-}
-
-class PalindromTest {
-	public static void run()
-	{
+	{	
 		java.util.Scanner kb = new java.util.Scanner(System.in);
+		System.out.print("Şehir ismini giriniz:");
+		String city = kb.nextLine();
 		
-		for (;;) {
-			System.out.print("Bir yazı giriniz:");
-			String s = kb.nextLine();
+		switch (city.toLowerCase()) {
+		case "ankara":
+		case "çankırı":
+		case "konya":
+			System.out.println("İç Anadolu Bölgesi");
+			break;
+		case "istanbul":
+		case "bursa":
+		case "çanakkale":
+			System.out.println("Marmara Bölgesi");
+			break;
 			
-			if ("quit".equals(s))
-				break;
-			
-			System.out.println(StringUtil.isPalindrome(s) ? "Palindrom" : "Palindrom değil");
-		}
-		
-		System.out.println("Tekrar yapıyor musunuz?");
-		
+		case "zonguldak":
+		case "bolu":
+		case "sinop":
+			System.out.println("Batı Karadeniz Bölgesi");
+			break;
+		default:
+			System.out.println("Geçersiz şehir ismi");			
+		}		
 	}
 }
 
-class StringUtil {
-	public static boolean isPalindrome(String s)
-	{
-		
-	}
-}
