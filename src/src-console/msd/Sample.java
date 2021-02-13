@@ -1,17 +1,11 @@
 /*----------------------------------------------------------------------------------------------------------------------
 	
 ----------------------------------------------------------------------------------------------------------------------*/
-package csd;
+package msd.util;
 
-class App {
-	public static void main(String [] args) 
+public class Sample {
+    public static void main(String [] args) 
 	{
-		System.out.println("Merhaba ben App.main");
-		msd.Sample.main(args);
+		System.out.println("Merhaba ben Sample.main");
 	}
 }
-
-
-
-
-
