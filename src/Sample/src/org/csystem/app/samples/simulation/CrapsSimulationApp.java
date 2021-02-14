@@ -8,7 +8,7 @@ class CrapsSimulationApp {
 		java.util.Scanner kb = new java.util.Scanner(System.in);
 		Craps craps = new Craps();
 		
-		System.out.print("Kaç kez oynamak istersiniz?");
+		System.out.print("KaÃ§ kez oynamak istersiniz?");
 		int n = Integer.parseInt(kb.nextLine());
 		
 		int count = 0;
