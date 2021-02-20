@@ -56,4 +56,14 @@ public class ArrayUtil {
         a[i] = a[k];
         a[k] = temp;
     }
+
+    public static int sum(int [] a)
+    {
+        int total = 0;
+
+        for (int i = 0; i < a.length; ++i)
+            total += a[i];
+
+        return total;
+    }
 }

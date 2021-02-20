@@ -1,21 +1,40 @@
 /*----------------------------------------------------------------------------------------------------------------------
-    Sınıf Çalışması: Parametresi ile aldığı int türden bir dizinin elemanlarının toplamını döndüren sum isimli
-    metodu ArrayUtil sınıfı içerisinde yazınız ve elemanları rasgele üretilmiş diziler ile test ediniz
+    Sınıf Çalışması: Parametresi ile aldığı int türden bir diziyi teryüz eden reverse isimli metodu yazınız ve test ediniz.
+    Metodu ikinci bir dizi kullanmadan yazınız
 ----------------------------------------------------------------------------------------------------------------------*/
 package org.csystem.app;
 
 import java.util.Random;
+import java.util.Scanner;
 
 import static org.csystem.util.ArrayUtil.*;
 
 class App {
     public static void main(String [] args)
     {
-        Random r = new Random();
-        int [] a = new int[10];
-        fillRandomArray(r, a, 10, 20);
+        SumTest.run();
+    }
+}
 
-        display(a);
+class SumTest {
+    public static void run()
+    {
+        Scanner kb = new Scanner(System.in);
+        Random r = new Random();
+
+        for (;;) {
+            System.out.print("Dizinin eleman sayısını giriniz:");
+            int n = Integer.parseInt(kb.nextLine());
+
+            if (n <= 0)
+                break;
+
+            int [] a = generateRandomArray(r, n, 1, 100);
+            display(a);
+            System.out.printf("Toplam:%d%n", sum(a));
+        }
+
+        System.out.println("Tekrar yapıyor musunuz?");
     }
 }
 
