@@ -4,11 +4,15 @@
 package org.csystem.util;
 
 import java.util.Random;
+import static java.lang.Character.isWhitespace;
+import static java.lang.Character.toLowerCase;
+import static java.lang.Character.toUpperCase;
+import static java.lang.Character.isLetter;
 
 public class StringUtil {
     public static String capitalize(String s)
     {
-        return s.isEmpty() ? s : Character.toUpperCase(s.charAt(0)) + s.substring(1).toLowerCase();
+        return s.isEmpty() ? s : toUpperCase(s.charAt(0)) + s.substring(1).toLowerCase();
     }
 
     public static int countString(String s1, String s2)
@@ -35,7 +39,7 @@ public class StringUtil {
         for (int i = 0; i < length; ++i) {
             char c = s.charAt(i);
 
-            if (Character.isLetter(c))
+            if (isLetter(c))
                 str += c;
         }
 
@@ -101,16 +105,16 @@ public class StringUtil {
         int right = s.length() - 1;
 
         while (left < right) {
-            char cLeft = Character.toLowerCase(s.charAt(left));
+            char cLeft = toLowerCase(s.charAt(left));
 
-            if (!Character.isLetter(cLeft)) {
+            if (!isLetter(cLeft)) {
                 ++left;
                 continue;
             }
 
-            char cRight = Character.toLowerCase(s.charAt(right));
+            char cRight = toLowerCase(s.charAt(right));
 
-            if (!Character.isLetter(cRight)) {
+            if (!isLetter(cRight)) {
                 --right;
                 continue;
             }
@@ -174,7 +178,7 @@ public class StringUtil {
         for (int i = 0; i < length; ++i) {
             char ch = s.charAt(i);
 
-            if (!Character.isWhitespace(ch))
+            if (!isWhitespace(ch))
                 str += ch;
         }
 
@@ -196,7 +200,7 @@ public class StringUtil {
         int i;
         int length = s.length();
 
-        for (i = 0; i < length && Character.isWhitespace(s.charAt(i)); ++i)
+        for (i = 0; i < length && isWhitespace(s.charAt(i)); ++i)
             ;
 
         return s.substring(i);
@@ -206,7 +210,7 @@ public class StringUtil {
     {
         int i;
 
-        for (i = s.length() - 1; i >= 0 && Character.isWhitespace(s.charAt(i)); --i)
+        for (i = s.length() - 1; i >= 0 && isWhitespace(s.charAt(i)); --i)
             ;
 
         return s.substring(0, i + 1);

@@ -3,10 +3,14 @@
 ----------------------------------------------------------------------------------------------------------------------*/
 package org.csystem.util;
 
+import static java.lang.Math.log10;
+import static java.lang.Math.abs;
+import static java.lang.Math.pow;
+
 public class NumberUtil {
     public static int countDigits(int val)
     {
-        return val == 1 ? 0 : (int)Math.log10(Math.abs(val)) + 1;
+        return val == 1 ? 0 : (int)log10(abs(val)) + 1;
     }
 
     public static void displayCollatz(int n)
@@ -41,10 +45,10 @@ public class NumberUtil {
 
     public static int getDigitalRoot(int val)
     {
-        int root = Math.abs(val);
+        int root = abs(val);
 
         while (root > 9)
-            root = getDigitsSum(root);
+            root = sumDigits(root);
 
         return root;
     }
@@ -68,23 +72,11 @@ public class NumberUtil {
         int sum = 0;
 
         while (val != 0) {
-            sum += Math.pow(val % 10, n);
+            sum += pow(val % 10, n);
             val /= 10;
         }
 
         return sum;
-    }
-
-    public static int getDigitsSum(int val)
-    {
-        int sum = 0;
-
-        while (val != 0) {
-            sum += val % 10;
-            val /= 10;
-        }
-
-        return Math.abs(sum);
     }
 
     public static int getFibonacciNumber(int n)
@@ -169,7 +161,7 @@ public class NumberUtil {
         if (val < 0)
             return false;
 
-        return val % getDigitsSum(val) == 0;
+        return val % sumDigits(val) == 0;
     }
 
     public static boolean isEven(int val)
@@ -278,10 +270,4 @@ public class NumberUtil {
 
         return Math.abs(sum);
     }
-
-
-
-
-
-
 }

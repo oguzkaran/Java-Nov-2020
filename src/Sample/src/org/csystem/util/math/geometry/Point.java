@@ -3,6 +3,9 @@
 ----------------------------------------------------------------------------------------------------------------------*/
 package org.csystem.util.math.geometry;
 
+import static java.lang.Math.*;
+
+
 public class Point {
 	public int x;
 	public int y;
@@ -34,7 +37,7 @@ public class Point {
 	
 	public double distance(int a, int b)
 	{
-		return Math.sqrt((x - a) * (x - a) + (y - b) * (y - b));				
+		return sqrt((x - a) * (x - a) + (y - b) * (y - b));
 	}
 	
 	public void offset(int dxy)
