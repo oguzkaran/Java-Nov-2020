@@ -39,6 +39,16 @@ public class ArrayUtil {
         return a;
     }
 
+    public static void reverse(int [] a)
+    {
+        int halfLength = a.length / 2;
+
+        for (int i = 0; i < halfLength; ++i)
+            swap(a, i, a.length - 1 - i);
+    }
+
+
+
     public static void swap(int [] a, int i, int k)
     {
         int temp;
