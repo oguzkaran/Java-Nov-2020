@@ -10,7 +10,7 @@ import static java.lang.Math.pow;
 public class NumberUtil {
     public static int countDigits(int val)
     {
-        return val == 1 ? 0 : (int)log10(abs(val)) + 1;
+        return val == 0 ? 1 : (int)log10(abs(val)) + 1;
     }
 
     public static void displayCollatz(int n)
@@ -53,6 +53,16 @@ public class NumberUtil {
         return root;
     }
 
+    public static int [] getDigits(int val) //123
+    {
+        int [] digits = new int[countDigits(val)];
+
+        val = Math.abs(val);
+        for (int i = digits.length - 1; i >= 0; digits[i--] = val % 10, val /= 10)
+            ;
+
+        return digits;
+    }
 
     public static int getDigitsFactorialSum(int val)
     {
@@ -224,12 +234,25 @@ public class NumberUtil {
         if (val % 7 == 0)
             return val == 7;
 
-        for (int i = 11; i * i <= val; i += 2)
+        int sqrtVal = (int)Math.sqrt(val);
+
+        for (int i = 11; i <= sqrtVal; i += 2)
             if (val % i == 0)
                 return false;
 
         return true;
 
+    }
+
+    public static boolean isPrimeX(int val)
+    {
+        do {
+            if (!isPrime(val))
+                return false;
+            val = sumDigits(val);
+        } while (val > 9);
+
+        return isPrime(val);
     }
 
     public static boolean isSuperPrime(int val)
