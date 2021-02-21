@@ -6,6 +6,73 @@ package org.csystem.util;
 import java.util.Random;
 
 public class ArrayUtil {
+    public static void bubbleSortAscending(int [] a)
+    {
+        for (int i = 0; i < a.length - 1; ++i)
+            for (int k = 0; k < a.length - 1 - i; ++k)
+                if (a[k + 1] < a[k])
+                    swap(a, k, k + 1);
+    }
+
+    public static void bubbleSortDescending(int [] a)
+    {
+        for (int i = 0; i < a.length - 1; ++i)
+            for (int k = 0; k < a.length - 1 - i; ++k)
+                if (a[k + 1] > a[k])
+                    swap(a, k, k + 1);
+    }
+
+    public static void selectionSortAscending(int [] a)
+    {
+        int min, minIndex;
+
+        for (int i = 0; i < a.length - 1; ++i) {
+            min = a[i];
+            minIndex = i;
+
+            for (int k = i + 1; k < a.length; ++k)
+                if (a[k] < min) {
+                    min = a[k];
+                    minIndex = k;
+                }
+
+            a[minIndex] = a[i];
+            a[i] = min;
+        }
+    }
+
+    public static void selectionSortDescending(int [] a)
+    {
+        int max, maxIndex;
+
+        for (int i = 0; i < a.length - 1; ++i) {
+            max = a[i];
+            maxIndex = i;
+
+            for (int k = i + 1; k < a.length; ++k)
+                if (a[k] > max) {
+                    max = a[k];
+                    maxIndex = k;
+                }
+
+            a[maxIndex] = a[i];
+            a[i] = max;
+        }
+    }
+
+    public static void bubbleSort(int [] a, boolean descending)
+    {
+        if (descending)
+            bubbleSortDescending(a);
+        else
+            bubbleSortAscending(a);
+    }
+
+    public static void bubbleSort(int [] a)
+    {
+        bubbleSort(a, false);
+    }
+
     public static void display(int [] a)
     {
         display(1, a);
@@ -46,12 +113,52 @@ public class ArrayUtil {
         return a;
     }
 
+    public static int partition(int [] a, int threshold)
+    {
+        int partitionIndex = 0;
+
+        while (partitionIndex != a.length && a[partitionIndex] < threshold)
+            ++partitionIndex;
+
+        if (partitionIndex == a.length)
+            return partitionIndex;
+
+        for (int i = partitionIndex + 1; i < a.length; ++i)
+            if (a[i] < threshold)
+                swap(a, i, partitionIndex++);
+
+        return partitionIndex;
+    }
+
     public static void reverse(int [] a)
     {
         int halfLength = a.length / 2;
 
         for (int i = 0; i < halfLength; ++i)
             swap(a, i, a.length - 1 - i);
+    }
+
+    public static void selectionSort(int [] a, boolean descending)
+    {
+        if (descending)
+            selectionSortDescending(a);
+        else
+            selectionSortAscending(a);
+    }
+
+    public static void selectionSort(int [] a)
+    {
+        selectionSort(a, false);
+    }
+
+    public static int sum(int [] a)
+    {
+        int total = 0;
+
+        for (int i = 0; i < a.length; ++i)
+            total += a[i];
+
+        return total;
     }
 
     public static void swap(int [] a, int i, int k)
@@ -72,13 +179,5 @@ public class ArrayUtil {
         a[k] = temp;
     }
 
-    public static int sum(int [] a)
-    {
-        int total = 0;
 
-        for (int i = 0; i < a.length; ++i)
-            total += a[i];
-
-        return total;
-    }
 }
