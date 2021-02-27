@@ -15,6 +15,19 @@ public class StringUtil {
         return s.isEmpty() ? s : toUpperCase(s.charAt(0)) + s.substring(1).toLowerCase();
     }
 
+    public static String changeCase(String s)
+    {
+        char [] c = new char[s.length()];
+
+        for (int i = 0; i < c.length; ++i) {
+            char ch = s.charAt(i);
+
+            c[i] = Character.isUpperCase(ch) ? Character.toLowerCase(ch) : Character.toUpperCase(ch);
+        }
+
+        return String.valueOf(c);
+    }
+
     public static int countString(String s1, String s2)
     {
         int count = 0;
@@ -70,13 +83,13 @@ public class StringUtil {
 
     public static String getRandomText(Random r, int n, String sourceText)
     {
-        String result = "";
         int length = sourceText.length();
+        char [] c = new char[n];
 
         for (int i = 0; i < n; ++i)
-            result += sourceText.charAt(r.nextInt(length));
+            c[i] = sourceText.charAt(r.nextInt(length));
 
-        return result;
+        return String.valueOf(c);
     }
 
     public static String getRandomTextTR(Random r, int n)
@@ -187,12 +200,11 @@ public class StringUtil {
 
     public static String reverse(String s)
     {
-        String str = "";
+        char [] c = s.toCharArray();
 
-        for (int i = s.length() - 1; i >= 0; --i)
-            str += s.charAt(i);
+        ArrayUtil.reverse(c);
 
-        return str;
+        return String.valueOf(c);
     }
 
     public static String trimLeading(String s)

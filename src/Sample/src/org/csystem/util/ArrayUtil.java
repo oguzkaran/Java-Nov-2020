@@ -88,6 +88,11 @@ public class ArrayUtil {
         System.out.println();
     }
 
+    public static void drawHistogram(int [] hist, int n, char ch)
+    {
+        int mavValue = max(hist);
+    }
+
     public static void fillRandomArray(int [] a, int min, int max) //[min, max)
     {
         fillRandomArray(new Random(), a, min, max);
@@ -113,6 +118,38 @@ public class ArrayUtil {
         return a;
     }
 
+    public static int [] getHistogramData(int [] a, int n) //[0, n]
+    {
+        int [] data = new int[n + 1];
+
+        for (int i = 0; i < a.length; ++i)
+            ++data[a[i]];
+
+        return data;
+    }
+
+    public static int max(int [] a)
+    {
+        int result = a[0];
+
+        for (int i = 1; i < a.length; ++i)
+            if (result < a[i])
+                result = a[i];
+
+        return result;
+    }
+
+    public static int min(int [] a)
+    {
+        int result = a[0];
+
+        for (int i = 1; i < a.length; ++i)
+            if (result > a[i])
+                result = a[i];
+
+        return result;
+    }
+
     public static int partition(int [] a, int threshold)
     {
         int partitionIndex = 0;
@@ -131,6 +168,14 @@ public class ArrayUtil {
     }
 
     public static void reverse(int [] a)
+    {
+        int halfLength = a.length / 2;
+
+        for (int i = 0; i < halfLength; ++i)
+            swap(a, i, a.length - 1 - i);
+    }
+
+    public static void reverse(char [] a)
     {
         int halfLength = a.length / 2;
 
@@ -173,6 +218,15 @@ public class ArrayUtil {
     public static void swap(double [] a, int i, int k)
     {
         double temp;
+
+        temp = a[i];
+        a[i] = a[k];
+        a[k] = temp;
+    }
+
+    public static void swap(char [] a, int i, int k)
+    {
+        char temp;
 
         temp = a[i];
         a[i] = a[k];

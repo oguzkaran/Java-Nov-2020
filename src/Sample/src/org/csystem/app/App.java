@@ -1,26 +1,38 @@
 /*----------------------------------------------------------------------------------------------------------------------
-    ArrayUtil sınıfının partition metodu (partition algoritması kullanılmıştır)
+    Homework-008-5. sorunun char türden dizi kullanarak bir çözümü
 ----------------------------------------------------------------------------------------------------------------------*/
 package org.csystem.app;
 
-import org.csystem.util.ArrayUtil;
+import org.csystem.util.StringUtil;
+
+import java.util.Random;
+import java.util.Scanner;
 
 class App {
     public static void main(String[] args)
     {
-        PartitionTest.run();
+        ChangeCaseTest.run();
     }
 }
 
-class PartitionTest {
+class ChangeCaseTest {
     public static void run()
     {
-        int [] a = {12, 13, 5, 10, 3, 7};
+        Scanner kb = new Scanner(System.in);
+        Random r = new Random();
 
-        ArrayUtil.display(a);
-        int index = ArrayUtil.partition(a, 3);
-        System.out.printf("Partition Index:%d%n", index);
-        ArrayUtil.display(a);
+        for (;;) {
+            System.out.print("Bir sayı giriniz:");
+            int n = Integer.parseInt(kb.nextLine());
+
+            if (n <= 0)
+                break;
+
+            String s = StringUtil.getRandomTextTR(n);
+            System.out.println(s);
+            System.out.println(StringUtil.changeCase(s));
+        }
+        System.out.println("Tekrar yapıyor musunuz?");
     }
 }
 

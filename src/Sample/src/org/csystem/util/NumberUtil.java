@@ -53,7 +53,7 @@ public class NumberUtil {
         return root;
     }
 
-    public static int [] getDigits(int val) //123
+    public static int [] getDigits(int val)
     {
         int [] digits = new int[countDigits(val)];
 
