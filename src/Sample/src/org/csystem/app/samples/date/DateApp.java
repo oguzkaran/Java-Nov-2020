@@ -35,6 +35,8 @@ public class DateApp {
 			int year = Integer.parseInt(kb.nextLine());
 			
 			DateUtil.displayDateTR(day, month, year);
+			System.out.println("/////////////////");
+			DateUtil.displayDateEN(day, month, year);
 		}
 		
 		System.out.println("Tekrar yapıyor musunuz?");	

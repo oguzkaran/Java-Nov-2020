@@ -88,9 +88,18 @@ public class ArrayUtil {
         System.out.println();
     }
 
-    public static void drawHistogram(int [] hist, int n, char ch)
+    public static void drawHistogram(int [] data, int n, char ch)
     {
-        int mavValue = max(hist);
+        int mavValue = max(data);
+
+        for (int i = 0; i < data.length; ++i) {
+            int count = (int)Math.ceil((double)data[i] * n / mavValue);
+
+            while (count -- > 0)
+                System.out.print(ch);
+
+            System.out.println();
+        }
     }
 
     public static void fillRandomArray(int [] a, int min, int max) //[min, max)

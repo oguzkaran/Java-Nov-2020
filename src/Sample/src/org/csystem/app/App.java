@@ -1,38 +1,36 @@
-/*----------------------------------------------------------------------------------------------------------------------
-    Homework-008-5. sorunun char türden dizi kullanarak bir çözümü
-----------------------------------------------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------------------------------------------------
+	Sınıf Çalışması: Parametresi ile aldığı en fazla üç basamaklı bir sayının Türkçe okunuşunu döndüren
+	numberToText3DigitsTR metodunu yazınız ve test ediniz. Metot 3 basamaktan daha büyü sayılar için kontrol
+	yapmayacaktır
+---------------------------------------------------------------------------------------------------------------------*/
 package org.csystem.app;
 
-import org.csystem.util.StringUtil;
+import org.csystem.util.ArrayUtil;
+import org.csystem.util.NumberUtil;
 
-import java.util.Random;
 import java.util.Scanner;
 
 class App {
     public static void main(String[] args)
     {
-        ChangeCaseTest.run();
+        NumberToText3DigitsTR.run();
     }
 }
 
-class ChangeCaseTest {
+class NumberToText3DigitsTR {
     public static void run()
     {
         Scanner kb = new Scanner(System.in);
-        Random r = new Random();
 
         for (;;) {
-            System.out.print("Bir sayı giriniz:");
-            int n = Integer.parseInt(kb.nextLine());
+            System.out.print("Üç basamaklı bir sayı giriniz:");
+            int val = Integer.parseInt(kb.nextLine());
 
-            if (n <= 0)
+            System.out.println(NumberUtil.numberToText3DigitsTR(val));
+
+            if (val == 0)
                 break;
-
-            String s = StringUtil.getRandomTextTR(n);
-            System.out.println(s);
-            System.out.println(StringUtil.changeCase(s));
         }
-        System.out.println("Tekrar yapıyor musunuz?");
     }
 }
 
