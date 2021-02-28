@@ -88,6 +88,12 @@ public class ArrayUtil {
         System.out.println();
     }
 
+    public static void display(int n, int [][] a)
+    {
+        for (int i = 0; i < a.length; ++i)
+            display(n, a[i]);
+    }
+
     public static void display(String [] str)
     {
         display('\n', str);
@@ -136,6 +142,16 @@ public class ArrayUtil {
         fillRandomArray(r, a, min, max);
 
         return a;
+    }
+
+    public static int [][] generateRandomMatrix(Random r, int row, int col, int min, int max)
+    {
+        int [][] m = new int[row][];
+
+        for (int i = 0; i < row; ++i)
+            m[i] = generateRandomArray(r, col, min, max);
+
+        return m;
     }
 
     public static int [] getHistogramData(int [] a, int n) //[0, n]

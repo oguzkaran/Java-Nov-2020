@@ -52,7 +52,8 @@ public class DateUtil {
 	{		
 		return !isWeekend(day, month, year);
 	}
-	
+
+
 	public static int getDayOfWeek(int day, int month, int year)
 	{		
 		int totalDays;
@@ -64,6 +65,21 @@ public class DateUtil {
 			totalDays += isLeapYear(y) ? 366 : 365;		
 		
 		return totalDays % 7;					
+	}
+
+	public static String getDateTR(int day, int month, int year)
+	{
+		return String.format("%d %s %d %s", day, getMonthTR(month), year, getDayOfWeekTR(day, month, year));
+	}
+
+	public static String getDayOfWeekTR(int day, int month, int year)
+	{
+		return daysOfWeekTR[getDayOfWeek(day, month, year)];
+	}
+
+	public static String getMonthTR(int month)
+	{
+		return monthsTR[month];
 	}
 	
 	public static int getDayOfYear(int day, int month, int year)
