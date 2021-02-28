@@ -102,6 +102,16 @@ public class StringUtil {
         return getRandomTextTR(new Random(), n);
     }
 
+    public static String [] getRandomTextsTR(Random r, int n, int minLength, int maxLength)
+    {
+        String [] texts = new String[n];
+
+        for (int i = 0; i < n; ++i)
+            texts[i] = getRandomTextTR(r, r.nextInt(maxLength - minLength) + minLength);
+
+        return texts;
+    }
+
     public static String getRandomTextEN(Random r, int n)
     {
         return getRandomText(r, n, "ABCDEFGHIJKLMNOPQRSTUWXVYZabcdefghijklmnopqrstuvwxyz");
@@ -110,6 +120,16 @@ public class StringUtil {
     public static String getRandomTextEN(int n)
     {
         return getRandomTextEN(new Random(), n);
+    }
+
+    public static String [] getRandomTextsEN(Random r, int n, int minLength, int maxLength)
+    {
+        String [] texts = new String[n];
+
+        for (int i = 0; i < n; ++i)
+            texts[i] = getRandomTextEN(r, r.nextInt(maxLength - minLength) + minLength);
+
+        return texts;
     }
 
     public static boolean isPalindrome(String s)
@@ -161,6 +181,25 @@ public class StringUtil {
     public static boolean isPangramTR(String s)
     {
         return isPangram(s.toLowerCase(), "abcçdefgğhıijklmnoöprsştuüvyz");
+    }
+
+    public static String join(String [] str, char sep)
+    {
+        return join(str, sep + "");
+    }
+
+    public static String join(String [] str, String sep)
+    {
+        String result = "";
+
+        for (int i = 0; i < str.length; ++i) {
+            if (!result.isEmpty())
+                result += sep;
+
+            result += str[i];
+        }
+
+        return result;
     }
 
     public static String padLeading(String s, int length, char ch)

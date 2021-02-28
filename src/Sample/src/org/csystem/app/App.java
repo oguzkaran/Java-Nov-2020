@@ -1,36 +1,21 @@
 /*--------------------------------------------------------------------------------------------------------------------
-	Sınıf Çalışması: Parametresi ile aldığı en fazla üç basamaklı bir sayının Türkçe okunuşunu döndüren
-	numberToText3DigitsTR metodunu yazınız ve test ediniz. Metot 3 basamaktan daha büyü sayılar için kontrol
-	yapmayacaktır
+    Sınıf Çalışması: Klavyeden aşağıdaki formatta girilen bilgiyi ayrıştırarak ekrana sonuçları yazdıran programı yazınız.
+    Not: Format geçerlilik kontrolü yapılmayacaktır
+    <isim>:<gg/aa/yyyy>:<ders adı>:<vize>:<final>
+    Oğuz Karan:10/09/1976:Programlamaya Giriş:76:89
+    Bu formatta kişimin vize ve final notlarına göre vize * 0.4 + final * 0.6 formülüne göre geçme notunu hesaplayan ve
+    doğum tarihinin hangi güne geldiğini de ekrana yazdıran programı yazınız
 ---------------------------------------------------------------------------------------------------------------------*/
 package org.csystem.app;
-
-import org.csystem.util.ArrayUtil;
-import org.csystem.util.NumberUtil;
-
-import java.util.Scanner;
 
 class App {
     public static void main(String[] args)
     {
-        NumberToText3DigitsTR.run();
-    }
-}
+        String text = "Bugün hava çok güzel.Bu [[[[[[güzel]]]]] havada ders yapıyoruz";
+        String [] strings = text.split("[ .\\]\\[]+");
 
-class NumberToText3DigitsTR {
-    public static void run()
-    {
-        Scanner kb = new Scanner(System.in);
-
-        for (;;) {
-            System.out.print("Üç basamaklı bir sayı giriniz:");
-            int val = Integer.parseInt(kb.nextLine());
-
-            System.out.println(NumberUtil.numberToText3DigitsTR(val));
-
-            if (val == 0)
-                break;
-        }
+        for (int i = 0; i < strings.length; ++i)
+            System.out.println(strings[i]);
     }
 }
 

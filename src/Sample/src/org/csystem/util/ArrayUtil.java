@@ -88,6 +88,17 @@ public class ArrayUtil {
         System.out.println();
     }
 
+    public static void display(String [] str)
+    {
+        display('\n', str);
+    }
+
+    public static void display(char sep, String [] str)
+    {
+        for (int i = 0; i < str.length; ++i)
+            System.out.printf("%s%c", str[i], sep);
+    }
+
     public static void drawHistogram(int [] data, int n, char ch)
     {
         int mavValue = max(data);

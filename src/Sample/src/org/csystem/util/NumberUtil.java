@@ -306,6 +306,8 @@ public class NumberUtil {
         return isPrime(val) && isPrime(getIndexOfPrimeNumber(val));
     }
 
+
+
     public static int max(int a, int b, int c)
     {
         return Math.max(Math.max(a, b),  c);
@@ -314,6 +316,20 @@ public class NumberUtil {
     public static int min(int a, int b, int c)
     {
         return Math.min(Math.min(a, b),  c);
+    }
+
+
+    public static String numberToText(long val)
+    {
+        int [] digits = getDigitsInThrees(val);
+
+        String result = "";
+
+        //TODO:
+        for (int i = 0; i < digits.length; ++i)
+            result += numberToText3DigitsTR(digits[i]) + " ";
+
+        return result;
     }
 
     public static int reversed(int val)
