@@ -287,7 +287,6 @@ public class NumberUtil {
                 return false;
 
         return true;
-
     }
 
     public static boolean isPrimeX(int val)
@@ -306,8 +305,6 @@ public class NumberUtil {
         return isPrime(val) && isPrime(getIndexOfPrimeNumber(val));
     }
 
-
-
     public static int max(int a, int b, int c)
     {
         return Math.max(Math.max(a, b),  c);
@@ -318,7 +315,6 @@ public class NumberUtil {
         return Math.min(Math.min(a, b),  c);
     }
 
-
     public static String numberToText(long val)
     {
         int [] digits = getDigitsInThrees(val);
@@ -326,8 +322,8 @@ public class NumberUtil {
         String result = "";
 
         //TODO:
-        for (int i = 0; i < digits.length; ++i)
-            result += numberToText3DigitsTR(digits[i]) + " ";
+        for (int digit : digits)
+            result += numberToText3DigitsTR(digit) + " ";
 
         return result;
     }

@@ -49,4 +49,14 @@ public class NumericLotto {
     {
         return getNumbers(getFlags());
     }
+
+    public int [][] getNumbers(int n)
+    {
+        int [][] result = new int[n][];
+
+        for (int i = 0; i < n; ++i)
+            result[i] = getNumbers();
+
+        return result;
+    }
 }

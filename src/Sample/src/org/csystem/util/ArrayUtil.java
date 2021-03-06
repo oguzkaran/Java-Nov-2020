@@ -82,16 +82,16 @@ public class ArrayUtil {
     {
         String fmt = String.format("%%0%dd ", n);
 
-        for (int i = 0; i < a.length; ++i)
-            System.out.printf(fmt, a[i]);
+        for (int val : a)
+            System.out.printf(fmt, val);
 
         System.out.println();
     }
 
     public static void display(int n, int [][] a)
     {
-        for (int i = 0; i < a.length; ++i)
-            display(n, a[i]);
+        for (int [] array : a)
+            display(n, array);
     }
 
     public static void display(String [] str)
@@ -101,16 +101,16 @@ public class ArrayUtil {
 
     public static void display(char sep, String [] str)
     {
-        for (int i = 0; i < str.length; ++i)
-            System.out.printf("%s%c", str[i], sep);
+        for (String s : str)
+            System.out.printf("%s%c", s, sep);
     }
 
     public static void drawHistogram(int [] data, int n, char ch)
     {
         int mavValue = max(data);
 
-        for (int i = 0; i < data.length; ++i) {
-            int count = (int)Math.ceil((double)data[i] * n / mavValue);
+        for (int val : data) {
+            int count = (int)Math.ceil((double)val * n / mavValue);
 
             while (count -- > 0)
                 System.out.print(ch);
@@ -144,6 +144,11 @@ public class ArrayUtil {
         return a;
     }
 
+    public static int [][] generateRandomMatrix(int row, int col, int min, int max)
+    {
+        return generateRandomMatrix(new Random(), row, col, min, max);
+    }
+
     public static int [][] generateRandomMatrix(Random r, int row, int col, int min, int max)
     {
         int [][] m = new int[row][];
@@ -154,14 +159,38 @@ public class ArrayUtil {
         return m;
     }
 
+    public static int [][] generateRandomSquareMatrix(int n, int min, int max)
+    {
+        return generateRandomSquareMatrix(new Random(), n, min, max);
+    }
+
+    public static int [][] generateRandomSquareMatrix(Random r, int n, int min, int max)
+    {
+        return generateRandomMatrix(r, n, n, min, max);
+    }
+
     public static int [] getHistogramData(int [] a, int n) //[0, n]
     {
         int [] data = new int[n + 1];
 
-        for (int i = 0; i < a.length; ++i)
-            ++data[a[i]];
+        for (int val : a)
+            ++data[val];
 
         return data;
+    }
+
+    public static boolean isMatrix(int [][] a)
+    {
+        for (int i = 1; i < a.length; ++i)
+            if (a[i].length != a[0].length)
+                return false;
+
+        return true;
+    }
+
+    public static boolean isSquareMatrix(int [][] a)
+    {
+        return isMatrix(a) && a.length == a[0].length;
     }
 
     public static int max(int [] a)
@@ -236,8 +265,29 @@ public class ArrayUtil {
     {
         int total = 0;
 
+        for (int val : a)
+            total += val;
+
+        return total;
+    }
+
+
+    public static int sum(int [][] a)
+    {
+        int total = 0;
+
+        for (int[] array : a)
+            total += sum(array);
+
+        return total;
+    }
+
+    public static int sumDiagonal(int [][] a)
+    {
+        int total = 0;
+
         for (int i = 0; i < a.length; ++i)
-            total += a[i];
+            total += a[i][i];
 
         return total;
     }
@@ -269,5 +319,16 @@ public class ArrayUtil {
         a[k] = temp;
     }
 
+    public static int [][] transpose(int [][] a)
+    {
+        int row = a.length;
+        int col = a[0].length;
+        int [][] t = new int[col][row];
 
+        for (int i = 0; i < row; ++i)
+            for (int j = 0; j < col; ++j)
+                t[j][i] = a[i][j];
+
+        return t;
+    }
 }

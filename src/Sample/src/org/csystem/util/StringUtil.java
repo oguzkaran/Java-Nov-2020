@@ -192,11 +192,11 @@ public class StringUtil {
     {
         String result = "";
 
-        for (int i = 0; i < str.length; ++i) {
+        for (String s : str) {
             if (!result.isEmpty())
                 result += sep;
 
-            result += str[i];
+            result += s;
         }
 
         return result;

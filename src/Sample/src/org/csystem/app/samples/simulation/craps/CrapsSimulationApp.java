@@ -1,4 +1,4 @@
-package org.csystem.app.samples.simulation;
+package org.csystem.app.samples.simulation.craps;
 
 import org.csystem.games.craps.Craps;
 
