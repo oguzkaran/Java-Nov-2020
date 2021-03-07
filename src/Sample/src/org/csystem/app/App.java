@@ -1,30 +1,43 @@
 /*--------------------------------------------------------------------------------------------------------------------
-    Sınıf elemanlarının erişim belirleyicileri:
-    Sınıf elemanlarının (veri elemanları, metotlar, ctor'lar vb.) erişim belirleyicileri 4(dört) tanedir:
-    public, protected, no-modifier, private.
-    Erişim belirleyici anlamında sınıf dört bölüme ayrılmıştır. Yani örneğin sınıfın public bir elemanı sınıfın
-    public bölümüne eklenmiş olur. Erişim belileyiciler sınıf dışından erişim için anlamlıdır. Sınıfın dışı başka
-    bir sınıfın içi demektir. Sınıfın içinde erişim belirleyici anlamında bir kısıt yoktur. Yani sınıf içerisinde her
-    bölüme erişilebilir.
-
-    Anahtar Notlar: Sınıfın no-modifier elemanı (hiçbir erişim belirleyici yazılmaması) Java'da erişim anlamında
-    diğerlerinden (public, protected, private) farklıdır. Bazı dillerde olduğu gibi no-modifier diğerlerinden bir anlamına
-    gelmez. Bu durumunun bir tek enum class'larda istisnası vardır. İleride ele alınacaktır.
-
-
+    Homework001-2. sorunun bir çözümü
 ---------------------------------------------------------------------------------------------------------------------*/
 package org.csystem.app;
+
+import org.csystem.util.NumberUtil;
+
+import java.util.Scanner;
 
 class App {
     public static void main(String[] args)
     {
-        int [][] a = {{1, 2, 3}, {4, 5, 6}, {7, 8, 9}, {1, 9, 8}};
+        MidTest.run();
+    }
+}
 
-        for (int [] array : a) {
-            for (int val : array)
-                System.out.printf("%d ", val);
+class MidTest {
+    public static void run()
+    {
+        Scanner kb = new Scanner(System.in);
 
-            System.out.println();
+        for (;;) {
+            System.out.print("Birinci sayıyı giriniz:");
+            int a = Integer.parseInt(kb.nextLine());
+
+            System.out.print("İkinci sayıyı giriniz:");
+            int b = Integer.parseInt(kb.nextLine());
+
+            System.out.print("Üçüncü sayıyı giriniz:");
+            int c = Integer.parseInt(kb.nextLine());
+
+            System.out.println(NumberUtil.mid(a, b, c));
+            System.out.println(NumberUtil.mid(b, a, c));
+            System.out.println(NumberUtil.mid(c, a, b));
+            System.out.println(NumberUtil.mid(a, c, b));
+            System.out.println(NumberUtil.mid(c, b, a));
+            System.out.println(NumberUtil.mid(b, c, a));
+
+            if (a == 0)
+                break;
         }
     }
 }

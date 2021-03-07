@@ -1,5 +1,7 @@
 package org.csystem.app.samples.date;
 
+import java.util.Random;
+
 public class DateUtil {
 	public static int [] daysOfMonth = {0, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
 	public static String [] monthsTR = {
@@ -131,5 +133,15 @@ public class DateUtil {
 	public static boolean isLeapYear(int year)
 	{
 		return year % 4 == 0 && year % 100 != 0 || year % 400 == 0; 
+	}
+
+	public static void printRandomDate()
+	{
+		Random r = new Random();
+		int year = r.nextInt(2100 - 1900 + 1) + 1900;
+		int month = r.nextInt(12) + 1;
+		int day = r.nextInt(month == 2 && isLeapYear(year) ? 29 : daysOfMonth[month]) + 1;
+
+		System.out.printf("%d%s %s %d%n", day, getDaySuffix(day), monthsEN[month], year);
 	}
 }

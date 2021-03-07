@@ -310,6 +310,17 @@ public class NumberUtil {
         return Math.max(Math.max(a, b),  c);
     }
 
+    public static int mid(int a, int b, int c)
+    {
+        if (a <= b && b <= c || c <= b && b <= a)
+            return b;
+
+        if (b <= a && a <= c || c <= a && a <= b)
+            return a;
+
+        return c;
+    }
+
     public static int min(int a, int b, int c)
     {
         return Math.min(Math.min(a, b),  c);
