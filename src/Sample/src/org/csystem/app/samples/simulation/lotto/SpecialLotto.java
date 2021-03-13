@@ -5,71 +5,86 @@ import org.csystem.util.NumberUtil;
 import java.util.Random;
 
 public class SpecialLotto {
-    public Random random;
-    public boolean firstGameWinStatus;
-    public boolean secondGameWinStatus;
-    public boolean thirdGameWinStatus;
-    public int first;
-    public int second;
-    public int third;
+    private Random m_random;
+    private boolean m_firstWin;
+    private boolean m_secondWin;
+    private boolean m_thirdWin;
+    private int first;
+    private int second;
+    private int third;
 
-    public int getNumber()
+    private int getNumber()
     {
-        return random.nextInt(99) + 1;
+        return m_random.nextInt(99) + 1;
     }
 
-    public void setNumbers()
+    private void setNumbers()
     {
         setFirst();
         setSecond();
         setThird();
     }
 
-    public void setFirst()
+    private void setFirst()
     {
         first = getNumber();
     }
 
-    public void setSecond()
+    private void setSecond()
     {
 
         while ((second = getNumber()) == first)
             ;
     }
 
-    public void setThird()
+    private void setThird()
     {
         while ((third = getNumber()) == first || third == second)
             ;
     }
 
-    public void playFirstGame(int first, int second, int third)
+    private void playFirstGame(int first, int second, int third)
     {
-        firstGameWinStatus = first + second + third < 150;
+        m_firstWin = first + second + third < 150;
     }
 
-    public void playSecondGame(int first, int second, int third)
+    private void playSecondGame(int first, int second, int third)
     {
-        secondGameWinStatus = NumberUtil.isPrime(first + second + third);
+        m_secondWin = NumberUtil.isPrime(first + second + third);
     }
 
-    public void playThirdGame(int first, int second, int third)
+    private void playThirdGame(int first, int second, int third)
     {
         int max = Math.max(Math.max(first, second), third);
         int min = Math.min(Math.min(first, second), third);
         int mid = first + second + third - max - min;
 
-        thirdGameWinStatus = max - min > mid;
+        m_thirdWin = max - min > mid;
     }
 
     public SpecialLotto()
     {
-        random = new Random();
+        m_random = new Random();
     }
 
     public SpecialLotto(Random rand)
     {
-        random = rand;
+        m_random = rand;
+    }
+
+    public boolean isFirstWin()
+    {
+        return m_firstWin;
+    }
+
+    public boolean isSecondWin()
+    {
+        return m_secondWin;
+    }
+
+    public boolean isThirdWin()
+    {
+        return m_thirdWin;
     }
 
     public void playFirstGame()

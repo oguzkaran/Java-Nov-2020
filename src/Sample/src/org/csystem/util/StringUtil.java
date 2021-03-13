@@ -10,6 +10,10 @@ import static java.lang.Character.toUpperCase;
 import static java.lang.Character.isLetter;
 
 public class StringUtil {
+    private StringUtil()
+    {
+    }
+
     public static String capitalize(String s)
     {
         return s.isEmpty() ? s : toUpperCase(s.charAt(0)) + s.substring(1).toLowerCase();

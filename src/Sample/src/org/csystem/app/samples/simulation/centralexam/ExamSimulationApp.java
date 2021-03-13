@@ -7,6 +7,10 @@
 package org.csystem.app.samples.simulation.centralexam;
 
 public class ExamSimulationApp {
+    private ExamSimulationApp()
+    {
+    }
+
     public static void run()
     {
         ExamSimulation physSimulation = new ExamSimulation("Fizik");

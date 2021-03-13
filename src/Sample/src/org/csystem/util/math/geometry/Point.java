@@ -5,7 +5,6 @@ package org.csystem.util.math.geometry;
 
 import static java.lang.Math.*;
 
-
 public class Point {
 	public int x;
 	public int y;

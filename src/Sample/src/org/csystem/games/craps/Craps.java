@@ -1,12 +1,14 @@
 package org.csystem.games.craps;
 
+import java.util.Random;
+
 public class Craps {
-	public boolean win;
-	public java.util.Random r;	
+	private boolean m_win;
+	private Random m_random;
 	
 	public int total()
 	{
-		return r.nextInt(6) + 1 + r.nextInt(6) + 1;
+		return m_random.nextInt(6) + 1 + m_random.nextInt(6) + 1;
 	}
 	
 	public void doWorkForIndeterminite(int sum)
@@ -17,7 +19,7 @@ public class Craps {
 			if (newSum == 7)
 				break;		
 		
-		win = newSum == sum;
+		m_win = newSum == sum;
 	}
 	
 	public void doWorkForSum(int sum)
@@ -25,12 +27,12 @@ public class Craps {
 		switch (sum) {
 		case 7:
 		case 11:
-			win = true;
+			m_win = true;
 			break;
 		case 2:
 		case 3:
 		case 12:
-			win = false;
+			m_win = false;
 			break;
 		default:
 			doWorkForIndeterminite(sum);
@@ -39,9 +41,14 @@ public class Craps {
 	
 	public Craps()
 	{
-		r = new java.util.Random();
+		m_random = new Random();
 	}
-	
+
+	public boolean isWin()
+	{
+		return m_win;
+	}
+
 	public void play()
 	{		
 		doWorkForSum(total());

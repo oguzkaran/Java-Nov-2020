@@ -8,7 +8,7 @@ import static java.lang.Math.abs;
 import static java.lang.Math.pow;
 
 public class NumberUtil {
-    public static int [] getDigits(long val, int n)
+    private static int [] getDigits(long val, int n)
     {
         int [] digits = new int[val == 0 ? 1 : (int)(log10(abs(val)) / n) + 1];
         int powOfTen = (int)Math.pow(10, n);
@@ -19,7 +19,7 @@ public class NumberUtil {
         return digits;
     }
 
-    public static String numberToText3DigitsTR(int val)
+    private static String numberToText3DigitsTR(int val)
     {
         if (val == 0)
             return "sıfır";
@@ -48,6 +48,10 @@ public class NumberUtil {
             str += ones[c];
 
         return str;
+    }
+
+    private NumberUtil()
+    {
     }
 
     public static int countDigits(long val)

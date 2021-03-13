@@ -2,7 +2,11 @@ package org.csystem.app.samples.simulation.craps;
 
 import org.csystem.games.craps.Craps;
 
-class CrapsSimulationApp {
+public class CrapsSimulationApp {
+	private CrapsSimulationApp()
+	{
+	}
+
 	public static void run()
 	{
 		java.util.Scanner kb = new java.util.Scanner(System.in);
@@ -15,7 +19,7 @@ class CrapsSimulationApp {
 		
 		for (int i = 0; i < n; ++i) {
 			craps.play();
-			if (craps.win)
+			if (craps.isWin())
 				++count;			
 		}
 		

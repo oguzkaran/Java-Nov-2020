@@ -3,16 +3,16 @@ package org.csystem.app.samples.numericlotto;
 import java.util.Random;
 
 public class NumericLotto {
-    public Random random;
+    private Random m_random;
 
-    public boolean [] getFlags()
+    private boolean [] getFlags()
     {
         boolean [] flags = new boolean[50];
 
         for (int i = 0; i < 6; ++i) {
             int val;
             for (;;) {
-                val = random.nextInt(49) + 1;
+                val = m_random.nextInt(49) + 1;
                 if (!flags[val])
                     break;
             }
@@ -22,7 +22,7 @@ public class NumericLotto {
         return flags;
     }
 
-    public static int [] getNumbers(boolean [] flags)
+    private static int [] getNumbers(boolean [] flags)
     {
         int [] numbers = new int[6];
 
@@ -37,12 +37,12 @@ public class NumericLotto {
 
     public NumericLotto()
     {
-        random = new Random();
+        m_random = new Random();
     }
 
     public NumericLotto(Random r)
     {
-        random = r;
+        m_random = r;
     }
 
     public int [] getNumbers()

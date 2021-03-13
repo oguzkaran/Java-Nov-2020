@@ -5,6 +5,10 @@
 package org.csystem.games.ballfall;
 
 public class BallFallGameApp {
+	private BallFallGameApp()
+	{
+	}
+
 	public static void run()
 	{
 		java.util.Scanner kb = new java.util.Scanner(System.in);
@@ -23,7 +27,7 @@ public class BallFallGameApp {
 			
 			ballFallGame.play(width, height);
 			
-			System.out.println(ballFallGame.shape);
+			System.out.println(ballFallGame.getShape());
 			System.out.println("//////////////////////");
 		}	
 	}

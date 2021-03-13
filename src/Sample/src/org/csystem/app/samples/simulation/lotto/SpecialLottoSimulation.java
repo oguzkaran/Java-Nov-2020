@@ -3,11 +3,11 @@ package org.csystem.app.samples.simulation.lotto;
 import java.util.Random;
 
 public class SpecialLottoSimulation {
-    public double firstGameWinProbability;
-    public double secondGameWinProbability;
-    public double thirdGameWinProbability;
+    private double m_firstGameWinProbability;
+    private double m_secondGameWinProbability;
+    private double m_thirdGameWinProbability;
 
-    public void runSimulation(int n)
+    private void runSimulation(int n)
     {
         SpecialLotto lotto = new SpecialLotto(new Random());
 
@@ -17,19 +17,34 @@ public class SpecialLottoSimulation {
 
         for (int i = 0; i < n; ++i) {
             lotto.play();
-            if (lotto.firstGameWinStatus)
+            if (lotto.isFirstWin())
                 ++firstGameWinCount;
 
-            if (lotto.secondGameWinStatus)
+            if (lotto.isSecondWin())
                 ++secondGameWinCount;
 
-            if (lotto.thirdGameWinStatus)
+            if (lotto.isThirdWin())
                 ++thirdGameWinCount;
         }
 
-        firstGameWinProbability = (double)firstGameWinCount / n;
-        secondGameWinProbability = (double)secondGameWinCount / n;
-        thirdGameWinProbability = (double)thirdGameWinCount / n;
+        m_firstGameWinProbability = (double)firstGameWinCount / n;
+        m_secondGameWinProbability = (double)secondGameWinCount / n;
+        m_thirdGameWinProbability = (double)thirdGameWinCount / n;
+    }
+
+    public double getFirstGameWinProbability()
+    {
+        return m_firstGameWinProbability;
+    }
+
+    public double getSecondGameWinProbability()
+    {
+        return m_secondGameWinProbability;
+    }
+
+    public double getThirdGameWinProbability()
+    {
+        return m_thirdGameWinProbability;
     }
 
     public void run(int n)

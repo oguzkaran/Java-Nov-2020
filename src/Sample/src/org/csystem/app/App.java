@@ -1,5 +1,7 @@
 /*--------------------------------------------------------------------------------------------------------------------
-    Aşağıdaki Person sınıfında m_married veri elemanı için get metodu "is" ile başlatılmıştır
+    final değişkenler:
+    Bir değişkeninin final olarak bildirilmesi o değişkenin bir kez değer alabileceği anlamına gelir. İkinci
+    bir değer atanamaz. Atanırsa error oluşur. final değişkenler sabit ifadesi olarak ele alınır.
 ---------------------------------------------------------------------------------------------------------------------*/
 package org.csystem.app;
 
@@ -10,33 +12,3 @@ class App {
     }
 }
 
-class Person {
-    private String m_name;
-    private int m_no;
-    private boolean m_married;
-
-    //...
-
-    public String getName()
-    {
-        return m_name;
-    }
-
-    public void setName(String name)
-    {
-        //...
-        m_name = name;
-    }
-
-    //...
-
-    public boolean isMarried()
-    {
-        return m_married;
-    }
-
-    public void setMarried(boolean married)
-    {
-        m_married = married;
-    }
-}
