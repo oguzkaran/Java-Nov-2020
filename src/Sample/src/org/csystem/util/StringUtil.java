@@ -194,21 +194,33 @@ public class StringUtil {
 
     public static String join(String [] str, char sep)
     {
-        return join(str, sep + "");
+        return join(str, 0, sep);
+    }
+
+    public static String join(String [] str, int startIndex, char sep)
+    {
+        return join(str, startIndex, sep + "");
+    }
+
+    public static String join(String [] str, int startIndex, String sep)
+    {
+        String result = "";
+
+        int length = str.length;
+
+        for (int i = startIndex; i < length; ++i) {
+            if (!result.isEmpty())
+                result += sep;
+
+            result += str[i];
+        }
+
+        return result;
     }
 
     public static String join(String [] str, String sep)
     {
-        String result = "";
-
-        for (String s : str) {
-            if (!result.isEmpty())
-                result += sep;
-
-            result += s;
-        }
-
-        return result;
+       return join(str, 0, sep);
     }
 
     public static String padLeading(String s, int length, char ch)

@@ -1,13 +1,19 @@
 /*--------------------------------------------------------------------------------------------------------------------
-    Aşağıdaki örnekte final olan referanstır. Nesne final yapılamaz. Ancak sınıfın içeriğinin değiştirilemeyecek
-    biçimde (immutable) olarak yazılması durumu olabilir. Örnekte sınıf bu şekşilde yazılmamıştır
+    IntValue sınıfı ve test kodu
 ---------------------------------------------------------------------------------------------------------------------*/
 package org.csystem.app;
+
+import org.csystem.util.IntValue;
 
 class App {
     public static void main(String[] args)
     {
+        IntValue ten = IntValue.TEN;
 
+        for (IntValue i = IntValue.ZERO; i.compareTo(ten) < 0; i = i.increment())
+            System.out.printf("%d ", i.getVal());
+
+        System.out.println();
     }
 }
 
