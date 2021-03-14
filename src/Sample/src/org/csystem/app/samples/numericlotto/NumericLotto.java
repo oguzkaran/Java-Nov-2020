@@ -1,9 +1,12 @@
+/*--------------------------------------------------------------------------------------------------------------------
+    NumericLotto sınıfı
+---------------------------------------------------------------------------------------------------------------------*/
 package org.csystem.app.samples.numericlotto;
 
 import java.util.Random;
 
 public class NumericLotto {
-    private Random m_random;
+    private final Random m_random;
 
     private boolean [] getFlags()
     {
@@ -11,6 +14,7 @@ public class NumericLotto {
 
         for (int i = 0; i < 6; ++i) {
             int val;
+
             for (;;) {
                 val = m_random.nextInt(49) + 1;
                 if (!flags[val])

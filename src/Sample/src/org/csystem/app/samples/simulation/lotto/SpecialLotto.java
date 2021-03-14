@@ -1,3 +1,6 @@
+/*--------------------------------------------------------------------------------------------------------------------
+    SpecialLotto sınıfı
+---------------------------------------------------------------------------------------------------------------------*/
 package org.csystem.app.samples.simulation.lotto;
 
 import org.csystem.util.NumberUtil;
@@ -5,7 +8,7 @@ import org.csystem.util.NumberUtil;
 import java.util.Random;
 
 public class SpecialLotto {
-    private Random m_random;
+    private final Random m_random;
     private boolean m_firstWin;
     private boolean m_secondWin;
     private boolean m_thirdWin;

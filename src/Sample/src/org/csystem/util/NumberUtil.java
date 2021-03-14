@@ -8,6 +8,9 @@ import static java.lang.Math.abs;
 import static java.lang.Math.pow;
 
 public class NumberUtil {
+    private static final String [] ONES = {"", "bir", "iki", "üç", "dört", "beş", "altı", "yedi", "sekiz", "dokuz"};
+    private static final String [] TENS = {"", "on", "yirmi", "otuz", "kırk", "elli", "altmış", "yetmiş", "seksen", "doksan"};
+
     private static int [] getDigits(long val, int n)
     {
         int [] digits = new int[val == 0 ? 1 : (int)(log10(abs(val)) / n) + 1];
@@ -24,9 +27,6 @@ public class NumberUtil {
         if (val == 0)
             return "sıfır";
 
-        String [] ones = {"", "bir", "iki", "üç", "dört", "beş", "altı", "yedi", "sekiz", "dokuz"};
-        String [] tens = {"", "on", "yirmi", "otuz", "kırk", "elli", "altmış", "yetmiş", "seksen", "doksan"};
-
         String str = val < 0 ? "eksi" : "";
         val = Math.abs(val);
 
@@ -38,14 +38,14 @@ public class NumberUtil {
 
         if (a != 0) {
             if (a != 1)
-                str += ones[a];
+                str += ONES[a];
             str += "yüz";
         }
         if (b != 0)
-            str += tens[b];
+            str += TENS[b];
 
         if (c != 0)
-            str += ones[c];
+            str += ONES[c];
 
         return str;
     }
