@@ -1,7 +1,7 @@
 package org.csystem.app.samples.studentinfoparser;
 
 public class StudentInfoParser {
-    public StudentInfo studentInfo;
+    private final StudentInfo m_studentInfo;
 
     //...
     public StudentInfoParser(String str)
@@ -14,11 +14,12 @@ public class StudentInfoParser {
 
         //...
 
-        studentInfo = new StudentInfo();
-        studentInfo.name = studentInfoStr[0];
-        studentInfo.birthDate = studentInfoStr[1];
-        studentInfo.lectureName = studentInfoStr[2];
-        studentInfo.midtermGrade = Integer.parseInt(studentInfoStr[3]);
-        studentInfo.finalGrade = Integer.parseInt(studentInfoStr[4]);
+        m_studentInfo = new StudentInfo(studentInfoStr[0], studentInfoStr[1], studentInfoStr[2],
+                Integer.parseInt(studentInfoStr[3]), Integer.parseInt(studentInfoStr[4]));
+    }
+
+    public StudentInfo getStudentInfo()
+    {
+        return m_studentInfo;
     }
 }

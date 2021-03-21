@@ -1,19 +1,20 @@
 /*--------------------------------------------------------------------------------------------------------------------
-    IntValue sınıfı ve test kodu
+    Fraction sınıfı ve test kodu
 ---------------------------------------------------------------------------------------------------------------------*/
 package org.csystem.app;
 
-import org.csystem.util.IntValue;
+import org.csystem.util.math.Fraction;
 
 class App {
     public static void main(String[] args)
     {
-        IntValue ten = IntValue.TEN;
+        Fraction f = new Fraction(3, 4);
 
-        for (IntValue i = IntValue.ZERO; i.compareTo(ten) < 0; i = i.increment())
-            System.out.printf("%d ", i.getVal());
+        f.increment(2);
+        System.out.println(f.toString());
+        f.decrement(2);
+        System.out.println(f.toString());
 
-        System.out.println();
     }
 }
 
