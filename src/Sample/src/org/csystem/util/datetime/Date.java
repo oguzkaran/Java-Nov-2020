@@ -7,7 +7,6 @@ import java.util.Calendar;
 import java.util.Random;
 
 public class Date {
-    private static final int [] DAYS_OF_MONTH = {0, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
     private static final String [] MONTHS_TR = {
             "", "Ocak", "Şubat", "Mart", "Nisan", "Mayıs", "Haziran", "Temmuz",
             "Ağustos", "Eylül", "Ekim", "Kasım", "Aralık"};
@@ -16,23 +15,19 @@ public class Date {
             "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"};
     private static final String [] DAYS_OF_WEEK_TR = {"Pazar", "Pazartesi", "Salı", "Çarşamba", "Perşembe", "Cuma", "Cumartesi"};
     private static final String [] DAYS_OF_WEEK_EN = {"Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"};
+    private static final Month [] MONTHS = Month.values();
 
     private int m_day;
     private int m_month;
     private int m_year;
     private int m_dayOfWeek;
 
-    private static boolean isLeapYear(int year)
-    {
-        return year % 4 == 0 && year % 100 != 0 || year % 400 == 0;
-    }
-
     private static boolean isValidDate(int day, int month, int year)
     {
         if (day < 1 || day > 31 || month < 1 || month > 12)
             return false;
 
-        return day <= (month == 2 && isLeapYear(year) ? 29 : DAYS_OF_MONTH[month]);
+        return day <= MONTHS[month - 1].getDays(year);
     }
 
     private static int getTotalDaysByMonth(int month, int year)
@@ -40,9 +35,9 @@ public class Date {
         int totalDays = 0;
 
         for (int m  = month - 1; m >= 1; --m)
-            totalDays += DAYS_OF_MONTH[m];
+            totalDays += MONTHS[m - 1].getDays(year);
 
-        return month > 2 && isLeapYear(year) ? totalDays + 1 : totalDays;
+        return month > 2 && Month.isLeapYear(year) ? totalDays + 1 : totalDays;
     }
 
     private static int getDayOfYear(int day, int month, int year)
@@ -55,7 +50,7 @@ public class Date {
         int totalDays = getDayOfYear(day, month, year);
 
         for (int y = 1900; y < year; ++y)
-            totalDays += isLeapYear(y) ? 366 : 365;
+            totalDays += Month.isLeapYear(y) ? 366 : 365;
 
         return totalDays % 7;
     }
@@ -147,7 +142,7 @@ public class Date {
     {
         int year = r.nextInt(maxYear - minYear + 1) + minYear;
         int month = r.nextInt(12) + 1;
-        int day = r.nextInt(month == 2 && isLeapYear(year) ? 29 : DAYS_OF_MONTH[month]) + 1;
+        int day = r.nextInt(MONTHS[month].getDays(year)) + 1;
 
         return new Date(day, month, year);
     }
@@ -159,12 +154,18 @@ public class Date {
         m_day = now.get(Calendar.DAY_OF_MONTH);
         m_month = now.get(Calendar.MONTH) + 1;
         m_year = now.get(Calendar.YEAR);
+        m_dayOfWeek = getDayOfWeek(m_day, m_month, m_year);
     }
 
-    //...
+    public Date(int day, Month month, int year)
+    {
+        checkForDate(day, month.ordinal() + 1, year, String.format("Invalid date values: all values -> %d, %d, %d", day, month.ordinal(), year));
+        set(day, month.ordinal() + 1, year);
+    }
+
     public Date(int day, int month, int year)
     {
-        checkForDate(day, month, year, String.format("Invalid date values: all valuees -> %d, %d, %d", day, month, year));
+        checkForDate(day, month, year, String.format("Invalid date values: all values -> %d, %d, %d", day, month, year));
         set(day, month, year);
     }
 
@@ -182,6 +183,15 @@ public class Date {
         set(day, m_month, m_year);
     }
 
+    public Month getMonth()
+    {
+        return MONTHS[m_month - 1];
+    }
+
+    public void setMonth(Month month)
+    {
+        setMonthValue(month.ordinal() + 1);
+    }
     public int getMonthValue()
     {
         return m_month;
@@ -191,6 +201,7 @@ public class Date {
     {
         if (month == m_month)
             return;
+
         checkForMonth(month);
         set(m_day, month, m_year);
     }
@@ -209,9 +220,9 @@ public class Date {
         set(m_day, m_month, year);
     }
 
-    public int getDayOfWeek()
+    public DayOfWeek getDayOfWeek()
     {
-        return m_dayOfWeek;
+        return DayOfWeek.values()[m_dayOfWeek];
     }
 
     public String getDayOfWeekTR()
@@ -226,7 +237,7 @@ public class Date {
 
     public boolean isLeapYear()
     {
-        return isLeapYear(m_year);
+        return Month.isLeapYear(m_year);
     }
 
     public boolean isWeekend()
