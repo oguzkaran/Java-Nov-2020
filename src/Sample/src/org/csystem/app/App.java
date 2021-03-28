@@ -1,66 +1,64 @@
 /*--------------------------------------------------------------------------------------------------------------------
-    Homework-016 için bir ipucu. Detaylar görmezden gelindi
+    A ile B arasındaki "agrregation" ilişkisinin genel biçimi
 ---------------------------------------------------------------------------------------------------------------------*/
 package org.csystem.app;
 
 class App {
     public static void main(String[] args)
     {
-        Card[] deck;
+        B x = new B(/*...*/);
+        B y = new B(/*...*/);
+        A z = new A(x/*...*/);
 
-        deck = Card.getShuffledDeck();
+        z.doWork1();
+        z.doWork2();
 
-        for (Card c : deck)
-            System.out.println(c.toString());
+        z.setB(y);
 
+        z.doWork1();
+        z.doWork2();
     }
 }
 
-class Card
-{
-    private CardValue m_value;
-    private CardType m_type;
+class A {
+    private B m_b;
 
-    public Card(CardValue value, CardType type)
+    public A(B b/*...*/)
     {
-        m_value = value;
-        m_type = type;
-    }
-
-    //...
-
-    public String toString()
-    {
-        return String.format("%s-%s", m_type.toString(), m_value.toString());
-    }
-
-    //...
-    public static Card[] getShuffledDeck()
-    {
-        Card[] deck = new Card[52];
-
-        int i = 0;
-
-        for (CardType type : CardType.values())
-            for (CardValue value : CardValue.values())
-                deck[i++] = new Card(value, type);
-
         //...
-        return deck;
+        setB(b);
+    }
+
+    public void setB(B b)
+    {
+        //...
+        m_b = b;
+    }
+
+    public B getB()
+    {
+        return m_b;
+    }
+
+    public void doWork1()
+    {
+        //...
+        m_b.doSomething();
+    }
+
+    public void doWork2()
+    {
+        //...
+        m_b.doSomething();
     }
 
     //...
 }
 
-enum CardType
-{
-    SPADE, CLUB, DIAMOND, HEART
+class B {
+    //...
+    public void doSomething()
+    {
+        //...
+    }
 }
-
-enum CardValue
-{
-    TWO, THREE, FOUR, FIVE, SIX, SEVEN, EIGHT, NINE, TEN, KNAVE, QUEEN, KING, ACE
-}
-
-
-
