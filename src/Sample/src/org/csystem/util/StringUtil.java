@@ -141,6 +141,28 @@ public class StringUtil {
         return texts;
     }
 
+    public static boolean isJavaIdentifier(String s)
+    {
+        if (s.equals("_"))
+            return false; //Java 9 ve sonrası için kdeğişken kontrolü
+
+        if (s.isBlank())
+            return false;
+
+        char ch = s.charAt(0);
+
+        if (!Character.isJavaIdentifierStart(ch))
+            return false;
+
+        int length = s.length();
+
+        for (int i = 1; i < length; ++i)
+            if (!Character.isJavaIdentifierPart(s.charAt(i)))
+                return false;
+
+        return true;
+    }
+
     public static boolean isPalindrome(String s)
     {
         int left = 0;
@@ -267,6 +289,20 @@ public class StringUtil {
         return String.valueOf(c);
     }
 
+    public static String squeeze(String s1, String s2)
+    {
+        String str = "";
+        int length = s1.length();
+
+        for (int i = 0; i < length; ++i) {
+            char ch = s1.charAt(i);
+            if (!s2.contains(ch + ""))
+                str += ch;
+        }
+
+        return str;
+    }
+
     public static String trimLeading(String s)
     {
         int i;
@@ -287,4 +323,26 @@ public class StringUtil {
 
         return s.substring(0, i + 1);
     }
+
+    public static String wrapWith(String str, char ch)
+    {
+        return wrapWith(str, ch, false);
+    }
+
+    public static String wrapWith(String str, char ch, boolean trim)
+    {
+        return wrapWith(str, ch, ch, trim);
+    }
+
+    public static String wrapWith(String str, char chBegin, char chEnd)
+    {
+        return wrapWith(str, chBegin, chEnd, false);
+    }
+
+    public static String wrapWith(String str, char chBegin, char chEnd, boolean trim)
+    {
+        return String.format("%c%s%c", chBegin, trim ? str.trim() : str, chEnd);
+    }
+
+
 }

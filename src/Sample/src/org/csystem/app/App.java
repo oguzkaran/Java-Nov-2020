@@ -1,31 +1,43 @@
 /*--------------------------------------------------------------------------------------------------------------------
-    AnalyticalCircle sınıfı ve test kodu:
-    Bir sınıfın içerisinde veri elemanı olarak tuttuğu referansa ilişkin bir metodun aynı isimde ve genel olarak
-    aynı parametrik yapıda yazılan bir versiyonuna "delegate method" denir
+    "upcasting" işleminde taban sınıf referansına, ona atanan türemiş sınıf referansının gösterdiği nesnenin taban sınıf
+    bölümünün adresi atanmış olur
 ---------------------------------------------------------------------------------------------------------------------*/
 package org.csystem.app;
-
-import org.csystem.util.math.geometry.AnalyticalCircle;
-import org.csystem.util.math.geometry.Point;
 
 class App {
     public static void main(String[] args)
     {
-        Point center = new Point(100, 100);
-        AnalyticalCircle ac = new AnalyticalCircle(-4.5, center);
+        B x = new B();
+        A y;
 
-        System.out.printf("Radius:%f%n", ac.getRadius());
-        System.out.printf("Area:%f%n", ac.getArea());
-        System.out.printf("Circumference:%f%n", ac.getCircumference());
-        System.out.printf("{x : %d, y : %d}%n", ac.getX(), ac.getY());
+        x.a = 10;
+        x.b = 34;
 
-        ac.offset(-20);
+        y = x;
 
-        System.out.printf("Radius:%f%n", ac.getRadius());
-        System.out.printf("Area:%f%n", ac.getArea());
-        System.out.printf("Circumference:%f%n", ac.getCircumference());
-        System.out.printf("{x : %d, y : %d}%n", ac.getX(), ac.getY());
+        Sample.doWork(y);
+        Sample.doWork(x);
+        System.out.printf("y.a = %d%n", y.a);
+        System.out.printf("x.a = %d%n", x.a);
+
+        y.a *= 2;
+        System.out.printf("y.a = %d%n", y.a);
+        System.out.printf("x.a = %d%n", x.a);
     }
 }
 
+class Sample {
+    public static void doWork(A a)
+    {
 
+    }
+}
+
+class B extends A {
+    public int b;
+    //...
+}
+
+class A {
+    public int a;
+}

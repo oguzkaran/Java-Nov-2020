@@ -75,4 +75,9 @@ public class AnalyticalCircle extends Circle {
     {
         m_center.offset(dx, dy);
     }
+
+    public double centerDistance(AnalyticalCircle analyticalCircle)
+    {
+        return m_center.distance(analyticalCircle.m_center);
+    }
 }
