@@ -142,7 +142,7 @@ public class Date {
     {
         int year = r.nextInt(maxYear - minYear + 1) + minYear;
         int month = r.nextInt(12) + 1;
-        int day = r.nextInt(MONTHS[month].getDays(year)) + 1;
+        int day = r.nextInt(MONTHS[month - 1].getDays(year)) + 1;
 
         return new Date(day, month, year);
     }
