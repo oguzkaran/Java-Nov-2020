@@ -1,10 +1,8 @@
 package org.csystem.app.samples.randomgenerator;
 
 import org.csystem.util.ArrayUtil;
-import org.csystem.util.IntValue;
 import org.csystem.util.datetime.Date;
 import org.csystem.util.datetime.Time;
-
 
 public class RandomObjectArrayGeneratorApp {
     private RandomObjectArrayGeneratorApp()
@@ -37,12 +35,15 @@ public class RandomObjectArrayGeneratorApp {
 
                 System.out.println(time.toLongTimeString());
             }
-            else if (object instanceof IntValue) {
-                IntValue ival = (IntValue)object;
+            else if (object instanceof Integer) {
+                int val = (int)object;
 
-                System.out.printf("ival = %d%n", ival.getVal());
-                ival = ival.add(20);
-                System.out.printf("ival = %d%n", ival.getVal());
+                System.out.printf("result = %d%n", val * val);
+            }
+            else if (object instanceof Character) {
+                char ch = (char)object;
+
+                System.out.printf("ch = %c%n", ch);
             }
             else if (object instanceof int[]){
                 int [] a = (int[])object;

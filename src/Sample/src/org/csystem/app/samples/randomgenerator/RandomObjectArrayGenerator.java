@@ -1,7 +1,6 @@
 package org.csystem.app.samples.randomgenerator;
 
 import org.csystem.util.ArrayUtil;
-import org.csystem.util.IntValue;
 import org.csystem.util.StringUtil;
 import org.csystem.util.datetime.Date;
 import org.csystem.util.datetime.Time;
@@ -14,7 +13,7 @@ public class RandomObjectArrayGenerator {
 
     private Object getRandomObject()
     {
-        int n = m_random.nextInt(5);
+        int n = m_random.nextInt(6);
 
         Object object;
 
@@ -29,7 +28,10 @@ public class RandomObjectArrayGenerator {
                 object = Time.of(m_random);
                 break;
             case 3:
-                object = IntValue.of(m_random.nextInt(255) - 128);
+                object = m_random.nextInt(255) - 128;
+                break;
+            case 4:
+                object = (char)(m_random.nextInt(26) + 'A');
                 break;
             default:
                 object = ArrayUtil.generateRandomArray(m_random, 10, 0, 100);
