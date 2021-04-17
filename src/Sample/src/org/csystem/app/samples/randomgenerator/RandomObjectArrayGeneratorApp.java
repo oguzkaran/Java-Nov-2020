@@ -4,7 +4,7 @@ import org.csystem.util.ArrayUtil;
 import org.csystem.util.datetime.Date;
 import org.csystem.util.datetime.Time;
 
-public class RandomObjectArrayGeneratorApp {
+public final class RandomObjectArrayGeneratorApp {
     private RandomObjectArrayGeneratorApp()
     {
     }

@@ -1,6 +1,6 @@
 package org.csystem.app.samples.company;
 
-public class CompanyApp {
+public final class CompanyApp {
     private CompanyApp()
     {
     }

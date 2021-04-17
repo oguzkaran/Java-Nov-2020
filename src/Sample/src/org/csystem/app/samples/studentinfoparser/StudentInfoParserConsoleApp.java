@@ -11,7 +11,7 @@ package org.csystem.app.samples.studentinfoparser;
 
 import java.util.Scanner;
 
-public class StudentInfoParserConsoleApp {
+public final class StudentInfoParserConsoleApp {
     public static void run()
     {
         Scanner kb = new Scanner(System.in);

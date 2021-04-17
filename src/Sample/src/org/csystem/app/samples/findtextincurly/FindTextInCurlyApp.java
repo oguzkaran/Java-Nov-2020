@@ -2,7 +2,7 @@ package org.csystem.app.samples.findtextincurly;
 
 import java.util.Scanner;
 
-public class FindTextInCurlyApp {
+public final class FindTextInCurlyApp {
     private FindTextInCurlyApp()
     {
     }

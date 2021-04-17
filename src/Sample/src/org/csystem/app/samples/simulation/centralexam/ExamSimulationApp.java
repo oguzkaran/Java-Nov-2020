@@ -6,7 +6,7 @@
 ---------------------------------------------------------------------------------------------------------------------*/
 package org.csystem.app.samples.simulation.centralexam;
 
-public class ExamSimulationApp {
+public final class ExamSimulationApp {
     private ExamSimulationApp()
     {
     }

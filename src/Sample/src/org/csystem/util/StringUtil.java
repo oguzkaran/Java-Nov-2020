@@ -9,7 +9,7 @@ import static java.lang.Character.toLowerCase;
 import static java.lang.Character.toUpperCase;
 import static java.lang.Character.isLetter;
 
-public class StringUtil {
+public final class StringUtil {
     private static final String ALPHABET_LOWER_TR = "abcçdefgğhıijklmnoöprsştuüvyz";
     private static final String ALPHABET_LOWER_EN = "abcdefghijklmnopqrstuvwxyz";
     private static final String ALPHABET_TR = "ABCÇDEFGĞHIİJKLMNOÖPRSŞTUÜVYZ" + ALPHABET_LOWER_TR;

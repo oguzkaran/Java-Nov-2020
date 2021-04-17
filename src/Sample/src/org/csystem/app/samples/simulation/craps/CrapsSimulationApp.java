@@ -6,7 +6,7 @@ package org.csystem.app.samples.simulation.craps;
 
 import org.csystem.games.craps.Craps;
 
-public class CrapsSimulationApp {
+public final class CrapsSimulationApp {
 	private CrapsSimulationApp()
 	{
 	}

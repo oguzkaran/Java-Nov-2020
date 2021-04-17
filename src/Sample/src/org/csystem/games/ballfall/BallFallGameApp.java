@@ -4,7 +4,7 @@
 ---------------------------------------------------------------------------------------------------------------------*/
 package org.csystem.games.ballfall;
 
-public class BallFallGameApp {
+public final class BallFallGameApp {
 	private BallFallGameApp()
 	{
 	}

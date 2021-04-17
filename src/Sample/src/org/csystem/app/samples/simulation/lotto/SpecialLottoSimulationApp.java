@@ -5,7 +5,7 @@ package org.csystem.app.samples.simulation.lotto;
 
 import java.util.Scanner;
 
-public class SpecialLottoSimulationApp {
+public final class SpecialLottoSimulationApp {
     private SpecialLottoSimulationApp()
     {
     }

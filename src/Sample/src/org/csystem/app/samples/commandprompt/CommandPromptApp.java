@@ -1,6 +1,6 @@
 package org.csystem.app.samples.commandprompt;
 
-public class CommandPromptApp {
+public final class CommandPromptApp {
     private CommandPromptApp()
     {
     }
