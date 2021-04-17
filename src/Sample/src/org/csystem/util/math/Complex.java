@@ -21,15 +21,15 @@ public class Complex {
 	{		
 	}	
 	
-	public Complex(double a)
+	public Complex(double re)
 	{
-		re = a;
+		this.re = re;
 	}
 	
-	public Complex(double a, double b)
+	public Complex(double re, double im)
 	{
-		re = a;
-		im = b;
+		this.re = re;
+		this.im = im;
 	}
 	
 	public double getNorm()
