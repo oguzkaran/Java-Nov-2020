@@ -3,6 +3,7 @@
 ----------------------------------------------------------------------------------------------------------------------*/
 package org.csystem.util;
 
+import java.util.ArrayList;
 import java.util.Random;
 import static java.lang.Character.isWhitespace;
 import static java.lang.Character.toLowerCase;
@@ -212,6 +213,27 @@ public final class StringUtil {
     public static boolean isPangramTR(String s)
     {
         return isPangram(s.toLowerCase(), ALPHABET_LOWER_TR);
+    }
+
+    public static String join(ArrayList list, char sep)
+    {
+        return join(list, 0, sep);
+    }
+
+    public static String join(ArrayList list, int startIndex, char sep)
+    {
+        String result = "";
+
+        int size = list.size();
+
+        for (int i = 0; i < size; ++i) {
+            if (!result.isEmpty())
+                result += sep;
+
+            result += list.get(i);
+        }
+
+        return result;
     }
 
     public static String join(String [] str, char sep)

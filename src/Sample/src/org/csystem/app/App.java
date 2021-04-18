@@ -1,49 +1,43 @@
-/*--------------------------------------------------------------------------------------------------------------------
-    null referans bir metodun geri değerinin referans olması durumunda kontrol amaçlı kullanılabilir
----------------------------------------------------------------------------------------------------------------------*/
+/*----------------------------------------------------------------------------------------------------------------------
+    ArrayList/Vector sınıfının ensureCapacity metodu capacity değerini aşağıdaki şekilde değiştirmekte (veya değiştirmemekte)
+    kullanılabilir: (else-if biçiminde düşününüz)
+    - Yeni capacity değeri var olan capacity değerinden küçük veya eşitse değişklik yapmaz
+    - Yeni capacity değeri var olan capacity değerinin artması gereken değerinden küçük veya eşitse artması gereken değere
+    çeker.
+    - Yeni capacity değeri var olan capacity değerinin artması gereken değerinden büyükse verilen capacity değerine çeker
+----------------------------------------------------------------------------------------------------------------------*/
 package org.csystem.app;
 
-import org.csystem.util.ArrayUtil;
+import org.csystem.util.StringUtil;
 
 import java.util.Random;
-import java.util.Scanner;
+import java.util.Vector;
 
 class App {
-    public static void main(String[] args)
+    public static void main(String [] args)
     {
+        Vector passwords = new Vector();
         Random r = new Random();
-        Scanner kb = new Scanner(System.in);
 
-        for (;;) {
-            System.out.print("Dizinin eleman sayısını giriniz:");
-            int n = Integer.parseInt(kb.nextLine());
+        for (int i = 0; i < 12; ++i)
+            passwords.add(StringUtil.getRandomTextTR(r, 10));
 
-            if (n == 0)
-                break;
+        System.out.printf("Size:%d%n", passwords.size());
+        System.out.printf("Capacity:%d%n", passwords.capacity());
 
-            int [] a = Util.generateRandomArray(r, n, 1, 100);
+        passwords.ensureCapacity(15);
 
-            if (a == null) {
-                System.out.println("Geçersiz değer");
-                continue;
-            }
+        System.out.printf("Size:%d%n", passwords.size());
+        System.out.printf("Capacity:%d%n", passwords.capacity());
 
-            ArrayUtil.display(2, a);
-        }
-    }
-}
+        passwords.ensureCapacity(30);
 
-class Util {
-    public static int [] generateRandomArray(Random r, int n, int min, int max) //[min, max)
-    {
-        if (n <= 0 || min >= max)
-            return null;
+        System.out.printf("Size:%d%n", passwords.size());
+        System.out.printf("Capacity:%d%n", passwords.capacity());
 
-        int [] a = new int[n];
+        passwords.ensureCapacity(90);
 
-        for (int i = 0; i < n; ++i)
-            a[i] = r.nextInt(max - min) + min;
-
-        return a;
+        System.out.printf("Size:%d%n", passwords.size());
+        System.out.printf("Capacity:%d%n", passwords.capacity());
     }
 }
