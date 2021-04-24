@@ -4,7 +4,7 @@
 package org.csystem.util;
 
 public final class IntValue {
-    private static final IntValue [] CACHE = new IntValue[256];
+    private static final IntValue [] CACHE;
     private final int m_val;
 
     private IntValue(int val)
@@ -12,9 +12,16 @@ public final class IntValue {
         m_val = val;
     }
 
-    public static final IntValue ONE = of(1);
-    public static final IntValue ZERO = of(0);
-    public static final IntValue TEN = of(10);
+    public static final IntValue ONE;
+    public static final IntValue ZERO;
+    public static final IntValue TEN;
+
+    static {
+        CACHE = new IntValue[256];
+        ONE = of(1);
+        ZERO = of(0);
+        TEN = of(10);
+    }
 
     public static IntValue of(int val)
     {

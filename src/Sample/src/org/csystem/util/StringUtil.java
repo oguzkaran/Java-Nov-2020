@@ -11,10 +11,17 @@ import static java.lang.Character.toUpperCase;
 import static java.lang.Character.isLetter;
 
 public final class StringUtil {
-    private static final String ALPHABET_LOWER_TR = "abcçdefgğhıijklmnoöprsştuüvyz";
-    private static final String ALPHABET_LOWER_EN = "abcdefghijklmnopqrstuvwxyz";
-    private static final String ALPHABET_TR = "ABCÇDEFGĞHIİJKLMNOÖPRSŞTUÜVYZ" + ALPHABET_LOWER_TR;
-    private static final String ALPHABET_EN = "ABCDEFGHIJKLMNOPQRSTUWXVYZ" + ALPHABET_LOWER_EN;
+    private static final String ALPHABET_LOWER_TR;
+    private static final String ALPHABET_LOWER_EN;
+    private static final String ALPHABET_TR;
+    private static final String ALPHABET_EN;
+
+    static {
+        ALPHABET_LOWER_TR = "abcçdefgğhıijklmnoöprsştuüvyz";
+        ALPHABET_LOWER_EN = "abcdefghijklmnopqrstuvwxyz";
+        ALPHABET_TR = "ABCÇDEFGĞHIİJKLMNOÖPRSŞTUÜVYZ" + ALPHABET_LOWER_TR;
+        ALPHABET_EN = "ABCDEFGHIJKLMNOPQRSTUWXVYZ" + ALPHABET_LOWER_EN;
+    }
 
     private StringUtil()
     {
@@ -215,12 +222,22 @@ public final class StringUtil {
         return isPangram(s.toLowerCase(), ALPHABET_LOWER_TR);
     }
 
+    public static String join(ArrayList list, String sep)
+    {
+        return join(list, 0, sep);
+    }
+
     public static String join(ArrayList list, char sep)
     {
         return join(list, 0, sep);
     }
 
     public static String join(ArrayList list, int startIndex, char sep)
+    {
+        return join(list, startIndex, sep + "");
+    }
+
+    public static String join(ArrayList list, int startIndex, String sep)
     {
         String result = "";
 

@@ -5,11 +5,13 @@ package org.csystem.app.samples.commandprompt;
 
 import org.csystem.util.StringUtil;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class CommandPrompt {
-    private static final String [] COMMANDS = {"length", "reverse", "upper", "lower", "change", "quit"};
+    private static final String [] COMMANDS = {"length", "reverse", "upper", "lower", "change", "gett", "join", "cleart", "elma"};
     private final Scanner m_kb = new Scanner(System.in);
+    private final ArrayList m_textList = new ArrayList();
     private String m_prompt;
 
     private static String getCommandByText(String text)
@@ -65,11 +67,45 @@ public class CommandPrompt {
         System.out.println(commandInfo[1].toLowerCase());
     }
 
-    private static void quitProc(String [] commandInfo)
+    private void getTextsProc(String [] commandInfo)
     {
-        System.out.println("C ve Sistem Programcıları Derneği");
-        System.out.println("Tekrar yapıyor musunuz?");
-        System.exit(0);
+        if (commandInfo.length != 1) {
+            System.out.println("gett argümansız yazılmalıdır");
+            return;
+        }
+
+        for (;;) {
+            System.out.println("İşlemi sonlandırmak için elma giriniz");
+            System.out.print("Yazıyı giriniz:");
+            String text = m_kb.nextLine();
+
+            if ("elma".equals(text))
+                break;
+
+            m_textList.add(text);
+        }
+    }
+
+    private void clearTextsProc(String [] commandInfo)
+    {
+        m_textList.clear();
+    }
+
+    private void joinProc(String [] commandInfo)
+    {
+        String sep = " ";
+
+        if (commandInfo.length != 1)
+            sep = StringUtil.join(commandInfo, 1, ' ');
+
+        if (m_textList.isEmpty()) {
+            System.out.println("Listede hiç yazı yok");
+            return;
+        }
+
+        String str = StringUtil.join(m_textList, sep);
+
+        System.out.println(str);
     }
 
     private void changeProc(String [] commandInfo)
@@ -77,6 +113,12 @@ public class CommandPrompt {
         m_prompt = StringUtil.join(commandInfo, 1, ' ');
     }
 
+    private static void quitProc(String [] commandInfo)
+    {
+        System.out.println("C ve Sistem Programcıları Derneği");
+        System.out.println("Tekrar yapıyor musunuz?");
+        System.exit(0);
+    }
     private void doWorkForCommand(String [] commandInfo)
     {
         switch (commandInfo[0]) {
@@ -94,6 +136,15 @@ public class CommandPrompt {
                 break;
             case "change":
                 changeProc(commandInfo);
+                break;
+            case "gett":
+                getTextsProc(commandInfo);
+                break;
+            case "cleart":
+                clearTextsProc(commandInfo);
+                break;
+            case "join":
+                joinProc(commandInfo);
                 break;
             default:
                 quitProc(commandInfo);

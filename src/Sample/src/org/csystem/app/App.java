@@ -1,43 +1,74 @@
 /*----------------------------------------------------------------------------------------------------------------------
-    ArrayList/Vector sınıfının ensureCapacity metodu capacity değerini aşağıdaki şekilde değiştirmekte (veya değiştirmemekte)
-    kullanılabilir: (else-if biçiminde düşününüz)
-    - Yeni capacity değeri var olan capacity değerinden küçük veya eşitse değişklik yapmaz
-    - Yeni capacity değeri var olan capacity değerinin artması gereken değerinden küçük veya eşitse artması gereken değere
-    çeker.
-    - Yeni capacity değeri var olan capacity değerinin artması gereken değerinden büyükse verilen capacity değerine çeker
+    Yukarıdaki örneğe C sınıfı eklenmesine rağmen main metodu içerisindeki kodlar bundan etkilenmemiştir. Yani
+    main metodu içerisinde A'dan türeyen sınıflar anlamında türden bağımsız kod yazılmıştır. Diğer bir söylemle
+    A sınıfından türemiş her sınıf A olarak düşünülerek kod yazılmıştır. Çalışma zamanı sırasında dinamik tür ile
+    gerçek türlere ilişkin metotlar çağrılmaktadır
 ----------------------------------------------------------------------------------------------------------------------*/
 package org.csystem.app;
 
-import org.csystem.util.StringUtil;
-
-import java.util.Random;
-import java.util.Vector;
+import java.util.Scanner;
 
 class App {
     public static void main(String [] args)
     {
-        Vector passwords = new Vector();
-        Random r = new Random();
+        Factory factory = new Factory();
+        Scanner kb = new Scanner(System.in);
 
-        for (int i = 0; i < 12; ++i)
-            passwords.add(StringUtil.getRandomTextTR(r, 10));
+        System.out.print("Bir sayı giriniz:");
+        int val = Integer.parseInt(kb.nextLine());
 
-        System.out.printf("Size:%d%n", passwords.size());
-        System.out.printf("Capacity:%d%n", passwords.capacity());
+        A x = factory.getAInstance(val);
 
-        passwords.ensureCapacity(15);
+        x.foo();
+        x.bar(10);
+    }
+}
 
-        System.out.printf("Size:%d%n", passwords.size());
-        System.out.printf("Capacity:%d%n", passwords.capacity());
+class Factory {
+    //...
+    public A getAInstance(int val)
+    {
+        if (val > 0)
+            return new C();
+        if (val == 0)
+            return new B();
 
-        passwords.ensureCapacity(30);
+        return new A();
+    }
+}
 
-        System.out.printf("Size:%d%n", passwords.size());
-        System.out.printf("Capacity:%d%n", passwords.capacity());
+class C extends B {
+    public void foo() //override
+    {
+        System.out.println("C.foo()");
+    }
 
-        passwords.ensureCapacity(90);
+    public void bar(int a) //override
+    {
+        System.out.println("C.bar(int)");
+    }
+}
 
-        System.out.printf("Size:%d%n", passwords.size());
-        System.out.printf("Capacity:%d%n", passwords.capacity());
+class B extends  A {
+    public void foo() //override
+    {
+        System.out.println("B.foo()");
+    }
+
+    public void bar(int a) //override
+    {
+        System.out.println("B.bar(int)");
+    }
+}
+
+class A {
+    public void foo()
+    {
+        System.out.println("A.foo()");
+    }
+
+    public void bar(int a)
+    {
+        System.out.println("A.bar(int)");
     }
 }
