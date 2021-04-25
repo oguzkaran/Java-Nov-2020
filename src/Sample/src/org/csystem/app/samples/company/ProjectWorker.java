@@ -27,5 +27,12 @@ public class ProjectWorker  extends Worker {
         m_ratio = ratio;
     }
 
+    public double calculateInsurancePayment()
+    {
+        double payment = super.calculateInsurancePayment();
+
+        return payment + payment * m_ratio;
+    }
+
     //...
 }
