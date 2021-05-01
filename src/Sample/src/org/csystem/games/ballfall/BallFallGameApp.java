@@ -13,7 +13,7 @@ public final class BallFallGameApp {
 	{
 		java.util.Scanner kb = new java.util.Scanner(System.in);
 		
-		BallFallGame ballFallGame = new BallFallGame();
+		BallFall ballFallGame = new BallFall();
 		
 		for (;;) {		
 			System.out.print("Width?");
