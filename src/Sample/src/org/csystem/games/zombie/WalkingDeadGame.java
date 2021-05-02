@@ -3,11 +3,13 @@ package org.csystem.games.zombie;
 import org.csystem.games.template.AbstractGame;
 
 public class WalkingDeadGame extends AbstractGame {
+    //...
 
     public WalkingDeadGame()
     {
         super("walking dead game");
     }
+
     public void init()
     {
         System.out.println("WalkingDeadGame.init");

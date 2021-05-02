@@ -3,7 +3,6 @@ package org.csystem.games.template;
 public abstract class AbstractGame { //template
     protected String name;
     //...
-
     protected AbstractGame(String name)
     {
         this.name = name;
