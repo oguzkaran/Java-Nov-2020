@@ -10,14 +10,12 @@ public class CSDArrayList {
 
     private static void doWorkForIllegalArgumentException(String message)
     {
-        System.out.println(message);
-        System.exit(-1);
+        throw new IllegalArgumentException(message);
     }
 
     private static void doWorkForIndexOutOfBoundsException(String message)
     {
-        System.out.println(message);
-        System.exit(-1);
+        throw new IndexOutOfBoundsException(message);
     }
 
     private static void checkCapacityValue(int capacity)

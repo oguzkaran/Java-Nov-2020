@@ -14,8 +14,7 @@ public class Time {
 
     private static void doWorkForException(String message)
     {
-        System.out.println(message);
-        System.exit(-1); //exception konusuna kadar sabredin
+        throw new DateTimeException(message);
     }
 
     private static boolean isValidForBound(int val, int max)
