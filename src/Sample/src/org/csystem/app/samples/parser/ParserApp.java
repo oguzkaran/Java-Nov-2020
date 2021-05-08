@@ -18,8 +18,8 @@ public final class ParserApp {
             if ("elma".equals(s))
                 break;
 
-            StringSource ss = new StringSource(s);
-            CharArraySource cs = new CharArraySource(s.trim());
+            StringISource ss = new StringISource(s);
+            CharArrayISource cs = new CharArrayISource(s.trim());
 
             parser.setSource(ss);
 

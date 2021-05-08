@@ -1,10 +1,10 @@
 package org.csystem.app.samples.parser;
 
-public class StringSource extends Source {
+public class StringISource implements ISource {
     private final String m_str;
     private int m_index;
 
-    public StringSource(String str)
+    public StringISource(String str)
     {
         m_str = str;
     }
