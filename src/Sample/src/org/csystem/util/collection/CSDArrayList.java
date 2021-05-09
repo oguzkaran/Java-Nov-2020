@@ -3,7 +3,7 @@
 ----------------------------------------------------------------------------------------------------------------------*/
 package org.csystem.util.collection;
 
-public class CSDArrayList {
+public class CSDArrayList implements Cloneable {
     private static final int DEFAULT_CAPACITY = 10;
     private Object [] m_elems;
     private int m_index;
@@ -76,6 +76,16 @@ public class CSDArrayList {
             m_elems[i] = null;
 
         m_index = 0;
+    }
+
+    public Object clone()
+    {
+        CSDArrayList ca = new CSDArrayList(m_elems.length);
+
+        System.arraycopy(m_elems, 0, ca.m_elems, 0, m_index);
+        ca.m_index = m_index;
+
+        return ca;
     }
 
     public void ensureCapacity(int capacity)
