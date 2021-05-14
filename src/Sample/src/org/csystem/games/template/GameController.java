@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class GameController {
-    private final ArrayList m_games = new ArrayList();
+    private final ArrayList<AbstractGame> m_games = new ArrayList<>();
 
     private AbstractGame getGameByOption(int option)
     {
@@ -17,7 +17,7 @@ public class GameController {
 
         System.out.println("Oyunlar:");
         for (int i = 0; i < size; ++i) {
-            AbstractGame game = (AbstractGame)m_games.get(i);
+            AbstractGame game = m_games.get(i);
             System.out.printf("%d.%s%n", i + 1, game.name);
         }
 

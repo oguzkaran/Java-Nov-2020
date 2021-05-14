@@ -11,7 +11,7 @@ import java.util.Scanner;
 public class CommandPrompt {
     private static final String [] COMMANDS = {"length", "reverse", "upper", "lower", "change", "gett", "join", "cleart", "elma"};
     private final Scanner m_kb = new Scanner(System.in);
-    private final ArrayList m_textList = new ArrayList();
+    private final ArrayList<String> m_textList = new ArrayList<>();
     private String m_prompt;
 
     private static String getCommandByText(String text)

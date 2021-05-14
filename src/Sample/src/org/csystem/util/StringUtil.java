@@ -222,22 +222,22 @@ public final class StringUtil {
         return isPangram(s.toLowerCase(), ALPHABET_LOWER_TR);
     }
 
-    public static String join(ArrayList list, String sep)
+    public static String join(ArrayList<String> list, String sep)
     {
         return join(list, 0, sep);
     }
 
-    public static String join(ArrayList list, char sep)
+    public static String join(ArrayList<String>  list, char sep)
     {
         return join(list, 0, sep);
     }
 
-    public static String join(ArrayList list, int startIndex, char sep)
+    public static String join(ArrayList<String>  list, int startIndex, char sep)
     {
         return join(list, startIndex, sep + "");
     }
 
-    public static String join(ArrayList list, int startIndex, String sep)
+    public static String join(ArrayList<String>  list, int startIndex, String sep)
     {
         String result = "";
 

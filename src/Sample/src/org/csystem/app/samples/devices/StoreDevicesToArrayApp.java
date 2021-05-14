@@ -13,7 +13,7 @@ public final class StoreDevicesToArrayApp {
         Scanner kb = new Scanner(System.in);
         System.out.print("Başlangıç capacity değerini giriniz:");
 
-        ArrayList devices = new ArrayList(Integer.parseInt(kb.nextLine()));
+        ArrayList<Device> devices = new ArrayList<>(Integer.parseInt(kb.nextLine()));
 
         for (;;) {
             System.out.print("Cihaz adını giriniz:");
@@ -33,10 +33,8 @@ public final class StoreDevicesToArrayApp {
         }
 
         System.out.println("------------------------");
-        for (Object obj : devices) {
-            Device device = (Device) obj;
-            System.out.println(device.toString());
-        }
+        for (Device dev : devices)
+            System.out.println(dev);
 
         System.out.println("Tekrar yapıyor musunuz?");
     }
