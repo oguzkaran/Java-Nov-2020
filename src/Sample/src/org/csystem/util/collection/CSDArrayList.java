@@ -3,9 +3,9 @@
 ----------------------------------------------------------------------------------------------------------------------*/
 package org.csystem.util.collection;
 
-public class CSDArrayList implements Cloneable {
+public class CSDArrayList<E> implements Cloneable {
     private static final int DEFAULT_CAPACITY = 10;
-    private Object [] m_elems;
+    private E [] m_elems;
     private int m_index;
 
     private static void doWorkForIllegalArgumentException(String message)
@@ -36,21 +36,21 @@ public class CSDArrayList implements Cloneable {
 
         System.arraycopy(m_elems, 0, temp, 0, m_index);
 
-        m_elems = temp;
+        m_elems = (E[])temp;
     }
 
     public CSDArrayList()
     {
-        m_elems = new Object[DEFAULT_CAPACITY];
+        m_elems = (E[])new Object[DEFAULT_CAPACITY];
     }
 
     public CSDArrayList(int capacity)
     {
         checkCapacityValue(capacity);
-        m_elems = new Object[capacity];
+        m_elems = (E[])new Object[capacity];
     }
 
-    public boolean add(Object elem)
+    public boolean add(E elem)
     {
         if (m_elems.length == m_index)
             changeCapacity(m_elems.length == 0 ? 1 : m_elems.length * 2);
@@ -60,7 +60,7 @@ public class CSDArrayList implements Cloneable {
         return true;
     }
 
-    public void add(int index, Object elem)
+    public void add(int index, E elem)
     {
         //TODO:
     }
@@ -80,7 +80,7 @@ public class CSDArrayList implements Cloneable {
 
     public Object clone()
     {
-        CSDArrayList ca = new CSDArrayList(m_elems.length);
+        CSDArrayList<E> ca = new CSDArrayList<>(m_elems.length);
 
         System.arraycopy(m_elems, 0, ca.m_elems, 0, m_index);
         ca.m_index = m_index;
@@ -96,17 +96,17 @@ public class CSDArrayList implements Cloneable {
         changeCapacity(Math.max(m_elems.length * 2, capacity));
     }
 
-    public Object get(int index)
+    public E get(int index)
     {
         checkIndex(index);
 
         return m_elems[index];
     }
 
-    public Object set(int index, Object elem)
+    public E set(int index, E elem)
     {
         checkIndex(index);
-        Object oldElem = m_elems[index];
+        E oldElem = m_elems[index];
 
         m_elems[index] = elem;
 
@@ -114,10 +114,10 @@ public class CSDArrayList implements Cloneable {
     }
 
 
-    private Object remove(int index)
+    private E remove(int index)
     {
         //TODO:
-        Object oldVal = m_elems[index];
+        E oldVal = m_elems[index];
 
         //TODO:
 
