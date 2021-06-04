@@ -1,4 +1,4 @@
-package org.csystem.app.fileio;
+package org.csystem.app.io.file.filelist;
 
 import java.io.File;
 
@@ -16,7 +16,7 @@ public final class FileListApp {
     public static void run(String [] args)
     {
         if (args.length != 1) {
-            System.out.println("Wrong number of arguments");
+            System.out.println("Geçersiz argümanlar");
             System.exit(-1);
         }
 

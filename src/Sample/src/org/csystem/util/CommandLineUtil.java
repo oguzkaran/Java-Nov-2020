@@ -18,4 +18,19 @@ public final class CommandLineUtil {
 
         return args;
     }
+
+    public static boolean checkForEquals(String [] args, int n)
+    {
+        return args.length == n;
+    }
+
+    public static boolean checkForGreater(String [] args, int n)
+    {
+        return args.length > n;
+    }
+
+    public static boolean checkForGreaterOrEqual(String [] args, int n)
+    {
+        return args.length >= n;
+    }
 }

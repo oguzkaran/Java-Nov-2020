@@ -1,4 +1,4 @@
-package org.csystem.app.fileio;
+package org.csystem.app.io.file.listdirectorycontents;
 
 import org.csystem.util.CommandLineUtil;
 
@@ -28,7 +28,7 @@ public final class ListDirectoryContentsApp {
         args = CommandLineUtil.getArguments(args, "Dizin yol ifadesini giriniz", new Scanner(System.in));
 
         if (args.length != 1) {
-            System.out.println("Wrong number of arguments");
+            System.out.println("Geçersiz argümanlar");
             System.exit(-1);
         }
 
