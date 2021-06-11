@@ -1,10 +1,14 @@
 /*----------------------------------------------------------------------------------------------------------------------
-    FileOutputStream sınıfının byte türden dizi parametreli write metotları ile yazma işlemi yapılabilir
+    Yukarıdaki örnek Files sınıfının newBufferedWriter metodu ile de yapılabilir
 ----------------------------------------------------------------------------------------------------------------------*/
 package org.csystem.app.io.file;
 
-import java.io.FileOutputStream;
-import java.util.Random;
+import java.io.*;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.StandardOpenOption;
+import java.util.Scanner;
 
 final class WriterApp {
     private WriterApp()
@@ -12,25 +16,26 @@ final class WriterApp {
     }
     public static void main(String[] args)
     {
-        if (args.length != 2) {
+        if (args.length != 1) {
             System.err.println("Geçersiz sayıda argümanlar");
             System.exit(-1);
         }
 
-        Random r = new Random();
+        Scanner kb = new Scanner(System.in);
 
-        try (FileOutputStream fos = new FileOutputStream(args[0], true)) {
-            int n = Integer.parseInt(args[1]);
-            byte [] data = new byte[n];
+        try (BufferedWriter bw = Files.newBufferedWriter(Path.of(args[0]), StandardCharsets.UTF_8,
+                StandardOpenOption.APPEND, StandardOpenOption.CREATE)) {
+            for (;;) {
+                System.out.print("Bir yazı giriniz:");
+                String text = kb.nextLine();
 
-            r.nextBytes(data);
+                if ("elma".equals(text))
+                    break;
 
-            for (byte val : data)
-                System.out.printf("%d ", val);
-
-            fos.write(data, n / 2, data.length - n / 2);
-
-            System.out.println();
+                bw.write(text);
+                bw.newLine();
+                bw.flush();
+            }
         }
         catch (NumberFormatException ignore) {
             System.err.println("Geçersiz sayı formatı");
